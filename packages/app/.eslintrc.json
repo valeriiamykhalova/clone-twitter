@@ -1,0 +1,102 @@
+{
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "classes": true,
+      "jsx": true,
+      "experimentalObjectRestSpread": true,
+      "legacyDecorators": true
+    }
+  },
+  "plugins": ["react", "react-native", "prettier", "import"],
+  "extends": [
+    "prettier",
+    "prettier/react",
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
+  "globals": {
+    "DEV": false
+  },
+  "rules": {
+    "import/named": "warn",
+    "prettier/prettier": "warn",
+    "arrow-body-style": ["warn", "as-needed"],
+    "react-native/no-unused-styles": "warn",
+    "react-native/no-inline-styles": "warn",
+    "react/display-name": "off",
+    "react/no-deprecated": "off",
+    "react/forbid-foreign-prop-types": "warn",
+    "react/prop-types": "warn",
+    "react/no-string-refs": "off",
+    "react/jsx-boolean-value": "warn",
+    "react/jsx-key": "warn",
+    "react/jsx-no-bind": "warn",
+    "no-return-await": "warn",
+    "no-tabs": "warn",
+    "no-param-reassign": "error",
+    "no-var": "warn",
+    "no-else-return": ["warn", { "allowElseIf": false }],
+    "curly": "off",
+    "no-lonely-if": "warn",
+    "no-duplicate-imports": "warn",
+    "semi": ["warn", "never"],
+    "no-extra-semi": "off",
+    "no-console": "off",
+    "no-unused-vars": "warn",
+    "no-implicit-coercion": "warn",
+    "padding-line-between-statements": [
+      "warn",
+      { "blankLine": "always", "prev": "*", "next": "if" },
+      { "blankLine": "always", "prev": "*", "next": "return" },
+      { "blankLine": "always", "prev": ["const", "let", "var"], "next": "*" },
+      {
+        "blankLine": "any",
+        "prev": ["const", "let", "var"],
+        "next": ["const", "let", "var"]
+      }
+    ],
+    "react/sort-comp": [
+      "warn",
+      {
+        "order": [
+          "static",
+          "static-methods",
+          "instance-variables",
+          "state",
+          "/^constructor/",
+          "render",
+          "/^_(render|maybeRender).+$/",
+          "lifecycle",
+          "/^[^_].+$/",
+          "/^_(?!(render|maybeRender)).+$/",
+          "everything-else"
+        ],
+        "groups": {
+          "lifecycle": [
+            "componentWillMount",
+            "componentDidMount",
+            "UNSAFE_componentWillReceiveProps",
+            "shouldComponentUpdate",
+            "componentWillUpdate",
+            "componentDidUpdate",
+            "componentWillUnmount"
+          ]
+        }
+      }
+    ]
+  },
+  "settings": {
+    "react": {
+      "version": "latest"
+    },
+    "import/ignore": ["node_modules"]
+  }
+}
