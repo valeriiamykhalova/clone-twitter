@@ -2,7 +2,7 @@ import React from 'react'
 import { createDrawerNavigator } from '@react-navigation/drawer'
 import { DrawerContent } from './drawer/drawerContent'
 
-import { StackNavigator } from './notifications-tab/stack'
+import { StackNavigator } from './stack'
 
 const Drawer = createDrawerNavigator()
 

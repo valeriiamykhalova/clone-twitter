@@ -4,8 +4,9 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { Appbar, Avatar, useTheme } from 'react-native-paper'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 
-import { TweetList } from './screens/TweetList'
-import { TweetDetail } from './screens/TweetDetail'
+import { TweetDetail } from './home-tab/screens/TweetDetail'
+
+import { BottomTabs } from './bottomTabs'
 
 const Stack = createStackNavigator()
 
@@ -14,7 +15,7 @@ export const StackNavigator = () => {
 
   return (
     <Stack.Navigator
-      initialRouteName="TweetList"
+      initialRouteName="FeedList"
       headerMode="screen"
       screenOptions={{
         header: ({ scene, previous, navigation }) => {
@@ -66,7 +67,7 @@ export const StackNavigator = () => {
                 titleStyle={{
                   fontSize: 18,
                   fontWeight: 'bold',
-                  color: theme.colors.primary,
+                  color: theme.colors.text,
                 }}
               />
             </Appbar.Header>
@@ -75,8 +76,8 @@ export const StackNavigator = () => {
       }}
     >
       <Stack.Screen
-        name="TweetList"
-        component={TweetList}
+        name="FeedList"
+        component={BottomTabs}
         options={({ route }) => {
           const routeName = route.state
             ? route.state.routes[route.state.index].name
