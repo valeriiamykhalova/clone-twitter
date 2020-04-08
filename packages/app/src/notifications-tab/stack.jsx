@@ -4,8 +4,8 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { Appbar, Avatar, useTheme } from 'react-native-paper'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 
-import { Feed } from './feed'
-import { Details } from './details'
+import { TweetList } from './screens/TweetList'
+import { TweetDetail } from './screens/TweetDetail'
 
 const Stack = createStackNavigator()
 
@@ -14,7 +14,7 @@ export const StackNavigator = () => {
 
   return (
     <Stack.Navigator
-      initialRouteName="FeedList"
+      initialRouteName="TweetList"
       headerMode="screen"
       screenOptions={{
         header: ({ scene, previous, navigation }) => {
@@ -53,9 +53,8 @@ export const StackNavigator = () => {
               )}
               <Appbar.Content
                 title={
-                  title === 'Feed' ? (
+                  title === 'Twitter' ? (
                     <MaterialCommunityIcons
-                      style={{ marginRight: 10 }}
                       name="twitter"
                       size={40}
                       color={theme.colors.primary}
@@ -76,18 +75,18 @@ export const StackNavigator = () => {
       }}
     >
       <Stack.Screen
-        name="FeedList"
-        component={Feed}
+        name="TweetList"
+        component={TweetList}
         options={({ route }) => {
           const routeName = route.state
             ? route.state.routes[route.state.index].name
-            : 'Feed'
+            : 'Twitter'
           return { headerTitle: routeName }
         }}
       />
       <Stack.Screen
         name="Details"
-        component={Details}
+        component={TweetDetail}
         options={{ headerTitle: 'Tweet' }}
       />
     </Stack.Navigator>

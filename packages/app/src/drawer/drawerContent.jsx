@@ -2,7 +2,6 @@ import React from 'react'
 import { View, StyleSheet } from 'react-native'
 import { DrawerItem, DrawerContentScrollView } from '@react-navigation/drawer'
 import {
-  useTheme,
   Avatar,
   Title,
   Caption,

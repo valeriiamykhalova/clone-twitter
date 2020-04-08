@@ -1,11 +1,16 @@
 import React from 'react'
-import { Provider as PaperProvider } from 'react-native-paper'
+import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper'
 import { NavigationContainer } from '@react-navigation/native'
 import { RootNavigator } from '../rootNavigator'
 
 export const Root = () => {
   return (
-    <PaperProvider>
+    <PaperProvider
+      theme={{
+        ...DefaultTheme,
+        colors: { ...DefaultTheme.colors, primary: '#1ba1f2' },
+      }}
+    >
       <NavigationContainer>
         <RootNavigator />
       </NavigationContainer>
