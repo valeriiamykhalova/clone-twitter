@@ -2,13 +2,13 @@ import React from 'react'
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs'
 import { useTheme, Portal, FAB } from 'react-native-paper'
 import { useIsFocused } from '@react-navigation/native'
-import { NotificationList } from './notifications-tab/notifications'
-import { Message } from './messages-tab/screens/Messages'
-import { Feed } from './home-tab/feed'
+import NotificationList from './notifications-tab/notifications'
+import Message from './messages-tab/screens/Messages'
+import Feed from './home-tab/feed'
 
 const Tab = createMaterialBottomTabNavigator()
 
-export const BottomTabs = props => {
+export default function BottomTabs(props) {
   const theme = useTheme()
   const isFocused = useIsFocused()
 
@@ -48,6 +48,7 @@ export const BottomTabs = props => {
             tabBarColor,
           }}
         />
+
         <Tab.Screen
           name="Notifications"
           component={NotificationList}
@@ -56,6 +57,7 @@ export const BottomTabs = props => {
             tabBarColor,
           }}
         />
+
         <Tab.Screen
           name="Messages"
           component={Message}

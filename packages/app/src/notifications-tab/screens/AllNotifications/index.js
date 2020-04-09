@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, FlatList, StyleSheet } from 'react-native'
 import { useTheme } from 'react-native-paper'
-import { Notification } from './Notification'
+import Notification from '../../components/Notification'
 
 function renderItem(item) {
   return <Notification {...item} />
@@ -11,7 +11,7 @@ function keyExtractor(item) {
   return item.id.toString()
 }
 
-export const AllNotifications = () => {
+export default function AllNotifications() {
   const theme = useTheme()
 
   return (

@@ -3,13 +3,13 @@ import { Dimensions } from 'react-native'
 import { useTheme } from 'react-native-paper'
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view'
 
-import { AllNotifications } from './screens/AllNotifications'
+import AllNotifications from './screens/AllNotifications'
 
 const initialLayout = { width: Dimensions.get('window').width }
 
 const All = () => <AllNotifications />
 
-export const NotificationList = () => {
+export default function NotificationList() {
   const [index, setIndex] = React.useState(0)
   const [routes] = React.useState([
     { key: 'all', title: 'All' },

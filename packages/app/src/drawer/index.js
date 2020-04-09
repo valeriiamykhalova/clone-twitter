@@ -13,9 +13,9 @@ import {
   useTheme,
 } from 'react-native-paper'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
-import { styles } from './styles'
+import styles from './styles'
 
-export const DrawerContent = props => {
+export default function DrawerContent(props) {
   const theme = useTheme()
 
   return (
@@ -29,8 +29,10 @@ export const DrawerContent = props => {
             }}
             size={50}
           />
+
           <Title style={styles.title}>Lera Mykhaliova</Title>
           <Caption style={styles.caption}>@emerell</Caption>
+
           <View style={styles.row}>
             <View style={styles.section}>
               <Paragraph style={[styles.paragraph, styles.caption]}>
@@ -38,6 +40,7 @@ export const DrawerContent = props => {
               </Paragraph>
               <Caption style={styles.caption}>Following</Caption>
             </View>
+
             <View style={styles.section}>
               <Paragraph style={[styles.paragraph, styles.caption]}>
                 159
@@ -46,6 +49,7 @@ export const DrawerContent = props => {
             </View>
           </View>
         </View>
+
         <Drawer.Section style={styles.drawerSection}>
           <DrawerItem
             icon={({ color, size }) => (
@@ -58,6 +62,7 @@ export const DrawerContent = props => {
             label="Profile"
             onPress={() => {}}
           />
+
           <DrawerItem
             icon={({ color, size }) => (
               <MaterialCommunityIcons name="tune" color={color} size={size} />
@@ -65,6 +70,7 @@ export const DrawerContent = props => {
             label="Preferences"
             onPress={() => {}}
           />
+
           <DrawerItem
             icon={({ color, size }) => (
               <MaterialCommunityIcons
@@ -77,18 +83,22 @@ export const DrawerContent = props => {
             onPress={() => {}}
           />
         </Drawer.Section>
+
         <Drawer.Section title="Preferences">
           <TouchableRipple onPress={props.toggleTheme}>
             <View style={styles.preference}>
               <Text>Dark Theme</Text>
+
               <View pointerEvents="none">
                 <Switch value={theme.dark} color={theme.colors.primary} />
               </View>
             </View>
           </TouchableRipple>
+
           <TouchableRipple>
             <View style={styles.preference}>
               <Text>RTL</Text>
+
               <View pointerEvents="none">
                 <Switch value={false} disabled />
               </View>

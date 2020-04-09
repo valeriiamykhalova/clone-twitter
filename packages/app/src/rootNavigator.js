@@ -1,12 +1,12 @@
 import React from 'react'
 import { createDrawerNavigator } from '@react-navigation/drawer'
-import { DrawerContent } from './drawer'
+import DrawerContent from './drawer'
 
-import { StackNavigator } from './stack'
+import StackNavigator from './stack'
 
 const Drawer = createDrawerNavigator()
 
-export const RootNavigator = ({ toggleTheme }) => {
+export default function RootNavigator({ toggleTheme }) {
   return (
     <Drawer.Navigator
       drawerContent={() => <DrawerContent toggleTheme={toggleTheme} />}

@@ -4,11 +4,11 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { Appbar, Avatar, useTheme } from 'react-native-paper'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 
-import { BottomTabs } from './bottomTabs'
+import BottomTabs from './bottomTabs'
 
 const Stack = createStackNavigator()
 
-export const StackNavigator = () => {
+export default function StackNavigator() {
   const theme = useTheme()
 
   return (

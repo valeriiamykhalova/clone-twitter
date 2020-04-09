@@ -1,12 +1,10 @@
 import React from 'react'
-import { StyleSheet, View } from 'react-native'
-import { Surface, Text, Avatar, useTheme } from 'react-native-paper'
+import { View } from 'react-native'
+import { Surface, Text, Avatar } from 'react-native-paper'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
-import { styles } from './styles'
+import styles from './styles'
 
-export const Notification = props => {
-  const theme = useTheme()
-
+export default function Notification(props) {
   return (
     <Surface style={styles.container}>
       <View style={styles.leftColumn}>
@@ -16,6 +14,7 @@ export const Notification = props => {
           color="#8d38e8"
         />
       </View>
+
       <View style={styles.rightColumn}>
         <View style={styles.topRow}>
           {props.item.people.map(({ name, image }) => (
@@ -27,10 +26,12 @@ export const Notification = props => {
             />
           ))}
         </View>
+
         <Text style={{ marginBottom: 10 }}>
           {props.item.people.map(({ name }) => name).join(' and ')} likes{' '}
           {props.name} tweet.
         </Text>
+
         <Text>{props.content}</Text>
       </View>
     </Surface>

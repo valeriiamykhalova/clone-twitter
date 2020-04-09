@@ -2,7 +2,7 @@ import React from 'react'
 import { FlatList, View, StyleSheet } from 'react-native'
 import { useTheme } from 'react-native-paper'
 
-import { Tweet } from './Tweet'
+import Tweet from '../../components/Tweet'
 
 function renderItem({ item }) {
   return <Tweet {...item} />
@@ -12,7 +12,7 @@ function keyExtractor(item) {
   return item.id.toString()
 }
 
-export const TweetList = props => {
+export default function TweetList(props) {
   const theme = useTheme()
 
   const data = tweets.map(tweet => ({

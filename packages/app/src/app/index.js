@@ -9,7 +9,7 @@ import {
   DarkTheme as NavigationDarkTheme,
   DefaultTheme as NavigationDefaultTheme,
 } from '@react-navigation/native'
-import { RootNavigator } from '../rootNavigator'
+import RootNavigator from '../rootNavigator'
 
 const CombinedDefaultTheme = {
   ...PaperDefaultTheme,
@@ -31,7 +31,7 @@ const CombinedDarkTheme = {
   },
 }
 
-export const Root = () => {
+export default function Root() {
   const [isDarkTheme, setIsDarkTheme] = React.useState(false)
 
   const theme = isDarkTheme ? CombinedDarkTheme : CombinedDefaultTheme
