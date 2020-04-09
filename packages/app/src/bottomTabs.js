@@ -2,9 +2,9 @@ import React from 'react'
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs'
 import { useTheme, Portal, FAB } from 'react-native-paper'
 import { useIsFocused } from '@react-navigation/native'
-import { TweetList } from './home-tab/screens/TweetList'
 import { NotificationList } from './notifications-tab/notifications'
 import { Message } from './messages-tab/screens/Messages'
+import { Feed } from './home-tab/feed'
 
 const Tab = createMaterialBottomTabNavigator()
 
@@ -35,14 +35,14 @@ export const BottomTabs = props => {
   return (
     <React.Fragment>
       <Tab.Navigator
-        initialRouteName="TweetList"
+        initialRouteName="Feed"
         shifting={true}
         activeColor={theme.colors.primary}
         inactiveColor={inactiveColor}
       >
         <Tab.Screen
-          name="Twitter"
-          component={TweetList}
+          name="Feed"
+          component={Feed}
           options={{
             tabBarIcon: 'home-account',
             tabBarColor,

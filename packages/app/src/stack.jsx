@@ -4,8 +4,6 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { Appbar, Avatar, useTheme } from 'react-native-paper'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 
-import { TweetDetail } from './home-tab/screens/TweetDetail'
-
 import { BottomTabs } from './bottomTabs'
 
 const Stack = createStackNavigator()
@@ -15,7 +13,7 @@ export const StackNavigator = () => {
 
   return (
     <Stack.Navigator
-      initialRouteName="FeedList"
+      initialRouteName="TabList"
       headerMode="screen"
       screenOptions={{
         header: ({ scene, previous, navigation }) => {
@@ -54,7 +52,7 @@ export const StackNavigator = () => {
               )}
               <Appbar.Content
                 title={
-                  title === 'Twitter' ? (
+                  title === 'Feed' ? (
                     <MaterialCommunityIcons
                       name="twitter"
                       size={40}
@@ -76,7 +74,7 @@ export const StackNavigator = () => {
       }}
     >
       <Stack.Screen
-        name="FeedList"
+        name="TabList"
         component={BottomTabs}
         options={({ route }) => {
           const routeName = route.state
@@ -84,11 +82,6 @@ export const StackNavigator = () => {
             : 'Twitter'
           return { headerTitle: routeName }
         }}
-      />
-      <Stack.Screen
-        name="Details"
-        component={TweetDetail}
-        options={{ headerTitle: 'Tweet' }}
       />
     </Stack.Navigator>
   )
