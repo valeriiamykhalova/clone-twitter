@@ -28,6 +28,9 @@ export const BottomTabs = props => {
   }
 
   const tabBarColor = theme.colors.surface
+  const inactiveColor = theme.dark
+    ? theme.colors.placeholder
+    : theme.colors.backdrop
 
   return (
     <React.Fragment>
@@ -35,7 +38,7 @@ export const BottomTabs = props => {
         initialRouteName="TweetList"
         shifting={true}
         activeColor={theme.colors.primary}
-        inactiveColor={theme.colors.backdrop}
+        inactiveColor={inactiveColor}
       >
         <Tab.Screen
           name="Twitter"

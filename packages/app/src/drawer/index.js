@@ -90,7 +90,7 @@ export const DrawerContent = props => {
             <View style={styles.preference}>
               <Text>RTL</Text>
               <View pointerEvents="none">
-                <Switch value={false} />
+                <Switch value={false} disabled />
               </View>
             </View>
           </TouchableRipple>

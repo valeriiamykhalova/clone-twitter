@@ -48,7 +48,7 @@ const tweets = [
       '🔥 Automatically use "smart" directional curly quotes with the `quotes` CSS property! Even handles nested quotes with the <q> tag :o',
     image: 'https://pbs.twimg.com/media/EOUrCOcWAAA71rA?format=png&name=small',
     avatar:
-      'https://pbs.twimg.com/profile_images/461190672117035010/0kJ4pynr_400x400.jpeg',
+      'https://pbs.twimg.com/profile_images/1203624639538302976/h-rvrjWy_400x400.jpg',
     comments: 12,
     retweets: 36,
     hearts: 175,

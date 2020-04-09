@@ -36,10 +36,7 @@ export const Root = () => {
 
   const theme = isDarkTheme ? CombinedDarkTheme : CombinedDefaultTheme
 
-  const toggleTheme = () => {
-    console.log('hey')
-    setIsDarkTheme(isDark => !isDark)
-  }
+  const toggleTheme = () => setIsDarkTheme(isDark => !isDark)
 
   return (
     <PaperProvider

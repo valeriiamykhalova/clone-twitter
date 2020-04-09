@@ -7,11 +7,16 @@ import {
   Text,
   Avatar,
   TouchableRipple,
+  useTheme,
 } from 'react-native-paper'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { styles } from './styles'
 
 export const Tweet = props => {
+  const theme = useTheme()
+
+  const darkIconColor = theme.dark ? theme.colors.placeholder : null
+
   return (
     <TouchableRipple onPress={() => props.onPress(props.id)}>
       <Surface style={styles.container}>
@@ -32,7 +37,11 @@ export const Tweet = props => {
           <View style={styles.bottomRow}>
             <TouchableOpacity hitSlop={{ top: 10, bottom: 10 }}>
               <View style={styles.iconContainer}>
-                <MaterialCommunityIcons name="comment-outline" size={12} />
+                <MaterialCommunityIcons
+                  name="comment-outline"
+                  size={12}
+                  color={darkIconColor}
+                />
                 <Caption style={styles.iconDescription}>
                   {props.comments}
                 </Caption>
@@ -40,7 +49,11 @@ export const Tweet = props => {
             </TouchableOpacity>
             <TouchableOpacity hitSlop={{ top: 10, bottom: 10 }}>
               <View style={styles.iconContainer}>
-                <MaterialCommunityIcons name="share-outline" size={14} />
+                <MaterialCommunityIcons
+                  name="share-outline"
+                  size={14}
+                  color={darkIconColor}
+                />
                 <Caption style={styles.iconDescription}>
                   {props.retweets}
                 </Caption>
@@ -48,7 +61,11 @@ export const Tweet = props => {
             </TouchableOpacity>
             <TouchableOpacity hitSlop={{ top: 10, bottom: 10 }}>
               <View style={styles.iconContainer}>
-                <MaterialCommunityIcons name="heart-outline" size={12} />
+                <MaterialCommunityIcons
+                  name="heart-outline"
+                  size={12}
+                  color={darkIconColor}
+                />
                 <Caption style={styles.iconDescription}>{props.hearts}</Caption>
               </View>
             </TouchableOpacity>
