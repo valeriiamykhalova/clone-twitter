@@ -9,7 +9,7 @@ import {
   DarkTheme as NavigationDarkTheme,
   DefaultTheme as NavigationDefaultTheme,
 } from '@react-navigation/native'
-import RootNavigator from '../rootNavigator'
+import RootNavigator from './RootNavigator'
 
 const CombinedDefaultTheme = {
   ...PaperDefaultTheme,

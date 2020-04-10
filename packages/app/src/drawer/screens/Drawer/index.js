@@ -31,6 +31,7 @@ export default function DrawerContent(props) {
           />
 
           <Title style={styles.title}>Lera Mykhaliova</Title>
+
           <Caption style={styles.caption}>@emerell</Caption>
 
           <View style={styles.row}>
@@ -38,6 +39,7 @@ export default function DrawerContent(props) {
               <Paragraph style={[styles.paragraph, styles.caption]}>
                 202
               </Paragraph>
+
               <Caption style={styles.caption}>Following</Caption>
             </View>
 
@@ -45,6 +47,7 @@ export default function DrawerContent(props) {
               <Paragraph style={[styles.paragraph, styles.caption]}>
                 159
               </Paragraph>
+
               <Caption style={styles.caption}>Followers</Caption>
             </View>
           </View>

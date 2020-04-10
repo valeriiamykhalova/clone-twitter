@@ -1,11 +1,11 @@
 import React from 'react'
-import TweetList from './screens/TweetList'
-import TweetDetail from './screens/TweetDetail'
+import TweetList from '../screens/TweetList'
+import TweetDetail from '../screens/TweetDetail'
 import { createStackNavigator } from '@react-navigation/stack'
 
 const Stack = createStackNavigator()
 
-export default function Feed() {
+export default function FeedNavigator() {
   return (
     <Stack.Navigator headerMode="none">
       <Stack.Screen name="TweetList" component={TweetList} />

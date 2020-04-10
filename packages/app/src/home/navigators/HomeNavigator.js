@@ -4,11 +4,11 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { Appbar, Avatar, useTheme } from 'react-native-paper'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 
-import BottomTabs from './bottomTabs'
+import TabNavigator from '../../feed/navigators/TabNavigator'
 
 const Stack = createStackNavigator()
 
-export default function StackNavigator() {
+export default function HomeNavigator() {
   const theme = useTheme()
 
   return (
@@ -75,7 +75,7 @@ export default function StackNavigator() {
     >
       <Stack.Screen
         name="TabList"
-        component={BottomTabs}
+        component={TabNavigator}
         options={({ route }) => {
           const routeName = route.state
             ? route.state.routes[route.state.index].name

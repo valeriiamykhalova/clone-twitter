@@ -1,8 +1,8 @@
 import React from 'react'
 import { createDrawerNavigator } from '@react-navigation/drawer'
-import DrawerContent from './drawer/screens/Drawer'
+import DrawerContent from '../screens/Drawer'
 
-import StackNavigator from './stack'
+import HomeNavigator from '../../home/navigators/HomeNavigator'
 
 const Drawer = createDrawerNavigator()
 
@@ -11,7 +11,7 @@ export default function RootNavigator({ toggleTheme }) {
     <Drawer.Navigator
       drawerContent={() => <DrawerContent toggleTheme={toggleTheme} />}
     >
-      <Drawer.Screen name="Home" component={StackNavigator} />
+      <Drawer.Screen name="Home" component={HomeNavigator} />
     </Drawer.Navigator>
   )
 }

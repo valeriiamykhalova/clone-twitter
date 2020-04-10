@@ -2,13 +2,13 @@ import React from 'react'
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs'
 import { useTheme, Portal, FAB } from 'react-native-paper'
 import { useIsFocused } from '@react-navigation/native'
-import NotificationList from './notifications/notifications'
-import Message from './messages/screens/Messages'
-import Feed from './home/feed'
+import NotificationsTabNavigator from '../../notifications/navigators/NotificationsTabNavigator'
+import Message from '../../messages/screens/Messages'
+import FeedNavigator from './FeedNavigator'
 
 const Tab = createMaterialBottomTabNavigator()
 
-export default function BottomTabs(props) {
+export default function TabNavigator(props) {
   const theme = useTheme()
   const isFocused = useIsFocused()
 
@@ -42,7 +42,7 @@ export default function BottomTabs(props) {
       >
         <Tab.Screen
           name="Feed"
-          component={Feed}
+          component={FeedNavigator}
           options={{
             tabBarIcon: 'home-account',
             tabBarColor,
@@ -51,7 +51,7 @@ export default function BottomTabs(props) {
 
         <Tab.Screen
           name="Notifications"
-          component={NotificationList}
+          component={NotificationsTabNavigator}
           options={{
             tabBarIcon: 'bell-outline',
             tabBarColor,
@@ -69,7 +69,7 @@ export default function BottomTabs(props) {
       </Tab.Navigator>
       <Portal>
         <FAB
-          visible={isFocused} // show FAB only when this screen is focused
+          visible={isFocused}
           icon={icon}
           style={{
             position: 'absolute',
