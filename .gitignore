@@ -10,10 +10,8 @@ yarn-error.log
 lerna-debug.log
 firebase-debug.log
 Preview.html
-package-lock.json
 yarn.lock
 **/build/
-package-lock.json
 .firebase/
 
 # IntelliJ IDE (PhpStorm, WebStorm) specific systemjs file
