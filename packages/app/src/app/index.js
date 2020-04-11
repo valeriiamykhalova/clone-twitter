@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from 'react'
+import React, { useState, useMemo } from 'react'
 import {
   DefaultTheme as PaperDefaultTheme,
   DarkTheme as PaperDarkTheme,
@@ -11,8 +11,8 @@ import {
 } from '@react-navigation/native'
 import RootNavigator from './RootNavigator'
 import AuthNavigator from '@/auth/navigators/AuthNavigator'
-import Loading from '@/loading/screens/Loading'
 import AuthContext from '@/auth/AuthContext'
+import * as firebase from 'firebase'
 
 const CombinedDefaultTheme = {
   ...PaperDefaultTheme,
@@ -34,39 +34,40 @@ const CombinedDarkTheme = {
   },
 }
 
+const firebaseConfig = {
+  apiKey: 'AIzaSyC64Pbs4EiU5mixNyCivNemZCcUBugmZIM',
+  authDomain: 'clone-twitter-fa80c.firebaseapp.com',
+  databaseURL: 'https://clone-twitter-fa80c.firebaseio.com',
+  projectId: 'clone-twitter-fa80c',
+  storageBucket: 'clone-twitter-fa80c.appspot.com',
+  messagingSenderId: '392249535836',
+  appId: '1:392249535836:web:8ec7bf00a39e1a562f6599',
+}
+
+if (firebase.apps.length === 0) {
+  firebase.initializeApp(firebaseConfig)
+}
+
 export default function Root() {
   const [isDarkTheme, setIsDarkTheme] = useState(false)
+  const [user, setUser] = useState(null)
 
-  const [isLoading, setIsLoading] = useState(true)
-  const [userToken, setUserToken] = useState(null)
-
-  const authContext = useMemo(() => {
-    return {
-      logIn: () => {
-        setIsLoading(false)
-        setUserToken('token')
+  const authContext = useMemo(
+    () => ({
+      logIn: user => {
+        setUser(user)
       },
       logOut: () => {
-        setIsLoading(false)
-        setUserToken(null)
+        setUser(null)
       },
-    }
-  }, [])
+    }),
+    []
+  )
 
   const theme = isDarkTheme ? CombinedDarkTheme : CombinedDefaultTheme
 
   function ToggleTheme() {
     setIsDarkTheme(isDark => !isDark)
-  }
-
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false)
-    }, 1000)
-  }, [])
-
-  if (isLoading) {
-    return <Loading />
   }
 
   return (
@@ -77,8 +78,8 @@ export default function Root() {
         }}
       >
         <NavigationContainer theme={theme}>
-          {userToken ? (
-            <RootNavigator toggleTheme={ToggleTheme} />
+          {user ? (
+            <RootNavigator toggleTheme={ToggleTheme} user={user} />
           ) : (
             <AuthNavigator />
           )}

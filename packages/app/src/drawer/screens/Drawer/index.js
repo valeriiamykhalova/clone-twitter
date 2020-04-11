@@ -15,14 +15,16 @@ import {
 } from 'react-native-paper'
 import AuthContext from '@/auth/AuthContext'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
+import * as firebase from 'firebase'
 import styles from './styles'
 
 export default function DrawerContent(props) {
   const { logOut } = useContext(AuthContext)
-
+  const { first_name, last_name, id } = props.user
   const theme = useTheme()
 
   function LogOut() {
+    firebase.auth().signOut()
     logOut()
   }
 
@@ -32,13 +34,14 @@ export default function DrawerContent(props) {
         <View style={styles.userInfoSection}>
           <Avatar.Image
             source={{
-              uri:
-                'https://graph.facebook.com/100012121187000/picture?height=400',
+              uri: `https://graph.facebook.com/${id}/picture?height=400`,
             }}
             size={50}
           />
 
-          <Title style={styles.title}>Lera Mykhaliova</Title>
+          <Title style={styles.title}>
+            {first_name} {last_name}
+          </Title>
 
           <Caption style={styles.caption}>@emerell</Caption>
 
@@ -110,6 +113,11 @@ function Preferences({ color, size }) {
 
 DrawerContent.propTypes = {
   toggleTheme: PropTypes.func.isRequired,
+  user: PropTypes.shape({
+    first_name: PropTypes.string.isRequired,
+    last_name: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+  }),
 }
 
 AccountIcon.propTypes = {
