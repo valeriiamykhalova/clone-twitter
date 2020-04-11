@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react'
 import AuthContext from '../../AuthContext'
-import { View, TouchableHighlight, Text } from 'react-native'
+import { View } from 'react-native'
 import Loading from '@/loading/screens/Loading'
+import FacebookButton from '../../components/FacebookButton'
 import styles from './styles'
 import * as Facebook from 'expo-facebook'
 import * as firebase from 'firebase'
@@ -79,11 +80,7 @@ export default function Login() {
 
   return (
     <View style={styles.container}>
-      <TouchableHighlight style={styles.button} onPress={LogIn}>
-        <View style={styles.buttonContainer}>
-          <Text style={styles.buttonText}>Login with Facebook</Text>
-        </View>
-      </TouchableHighlight>
+      <FacebookButton onPress={LogIn} />
     </View>
   )
 }
