@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 import { View } from 'react-native'
 import { DrawerItem, DrawerContentScrollView } from '@react-navigation/drawer'
@@ -13,11 +13,18 @@ import {
   Switch,
   useTheme,
 } from 'react-native-paper'
+import AuthContext from '@/auth/AuthContext'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import styles from './styles'
 
 export default function DrawerContent(props) {
+  const { logOut } = useContext(AuthContext)
+
   const theme = useTheme()
+
+  function LogOut() {
+    logOut()
+  }
 
   return (
     <DrawerContentScrollView {...props}>
@@ -55,11 +62,11 @@ export default function DrawerContent(props) {
         </View>
 
         <Drawer.Section style={styles.drawerSection}>
-          <DrawerItem icon={accountIcon} label="Profile" />
+          <DrawerItem icon={AccountIcon} label="Profile" />
 
-          <DrawerItem icon={preferences} label="Preferences" />
+          <DrawerItem icon={Preferences} label="Preferences" />
 
-          <DrawerItem icon={bookmark} label="Bookmarks" />
+          <DrawerItem icon={Bookmark} label="Bookmarks" />
         </Drawer.Section>
 
         <Drawer.Section title="Preferences">
@@ -72,14 +79,12 @@ export default function DrawerContent(props) {
               </View>
             </View>
           </TouchableRipple>
+        </Drawer.Section>
 
-          <TouchableRipple>
+        <Drawer.Section title="Other">
+          <TouchableRipple onPress={LogOut}>
             <View style={styles.preference}>
-              <Text>RTL</Text>
-
-              <View pointerEvents="none">
-                <Switch value={false} disabled />
-              </View>
+              <Text>Log Out</Text>
             </View>
           </TouchableRipple>
         </Drawer.Section>
@@ -88,18 +93,18 @@ export default function DrawerContent(props) {
   )
 }
 
-function accountIcon({ color, size }) {
+function AccountIcon({ color, size }) {
   return (
     <MaterialCommunityIcons name="account-outline" color={color} size={size} />
   )
 }
 
-function bookmark({ color, size }) {
+function Bookmark({ color, size }) {
   return (
     <MaterialCommunityIcons name="bookmark-outline" color={color} size={size} />
   )
 }
-function preferences({ color, size }) {
+function Preferences({ color, size }) {
   return <MaterialCommunityIcons name="tune" color={color} size={size} />
 }
 
@@ -107,17 +112,17 @@ DrawerContent.propTypes = {
   toggleTheme: PropTypes.func.isRequired,
 }
 
-accountIcon.propTypes = {
+AccountIcon.propTypes = {
   color: PropTypes.string.isRequired,
   size: PropTypes.number.isRequired,
 }
 
-bookmark.propTypes = {
+Bookmark.propTypes = {
   color: PropTypes.string.isRequired,
   size: PropTypes.number.isRequired,
 }
 
-preferences.propTypes = {
+Preferences.propTypes = {
   color: PropTypes.string.isRequired,
   size: PropTypes.number.isRequired,
 }
