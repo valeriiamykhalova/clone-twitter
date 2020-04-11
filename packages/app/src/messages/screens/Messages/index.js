@@ -22,11 +22,7 @@ export default function Message() {
         on Twitter. Share Tweets, media, and more!
       </Caption>
 
-      <Button
-        style={styles.button}
-        mode="contained"
-        labelStyle={{ color: 'white' }}
-      >
+      <Button style={styles.button} mode="contained" labelStyle={styles.label}>
         Write a message
       </Button>
     </ScrollView>

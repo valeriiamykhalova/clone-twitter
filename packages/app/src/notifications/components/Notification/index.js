@@ -1,10 +1,11 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { View } from 'react-native'
 import { Surface, Text, Avatar } from 'react-native-paper'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import styles from './styles'
 
-export default function Notification(props) {
+export default function Notification({ item }) {
   return (
     <Surface style={styles.container}>
       <View style={styles.leftColumn}>
@@ -17,9 +18,9 @@ export default function Notification(props) {
 
       <View style={styles.rightColumn}>
         <View style={styles.topRow}>
-          {props.item.people.map(({ name, image }) => (
+          {item.people.map(({ name, image }) => (
             <Avatar.Image
-              style={{ marginRight: 10 }}
+              style={styles.avatar}
               key={name}
               source={{ uri: image }}
               size={40}
@@ -27,13 +28,26 @@ export default function Notification(props) {
           ))}
         </View>
 
-        <Text style={{ marginBottom: 10 }}>
-          {props.item.people.map(({ name }) => name).join(' and ')} likes{' '}
-          {props.name} tweet.
+        <Text style={styles.text}>
+          {item.people.map(({ name }) => name).join(' and ')} likes {item.name}{' '}
+          tweet.
         </Text>
 
-        <Text>{props.content}</Text>
+        <Text style={styles.content}>{item.content}</Text>
       </View>
     </Surface>
   )
+}
+
+Notification.propTypes = {
+  item: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    content: PropTypes.string.isRequired,
+    people: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        image: PropTypes.string.isRequired,
+      })
+    ).isRequired,
+  }),
 }

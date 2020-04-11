@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { FlatList, View, StyleSheet } from 'react-native'
 import { useTheme } from 'react-native-paper'
 
@@ -24,18 +25,43 @@ export default function TweetList(props) {
       }),
   }))
 
+  function seperator() {
+    return <View style={{ height: StyleSheet.hairlineWidth }} />
+  }
+
   return (
-    <FlatList
-      contentContainerStyle={{ backgroundColor: theme.colors.background }}
-      style={{ backgroundColor: theme.colors.background }}
-      data={data}
-      renderItem={renderItem}
-      keyExtractor={keyExtractor}
-      ItemSeparatorComponent={() => (
-        <View style={{ height: StyleSheet.hairlineWidth }} />
-      )}
-    />
+    <React.Fragment>
+      <FlatList
+        contentContainerStyle={{ backgroundColor: theme.colors.background }}
+        style={{ backgroundColor: theme.colors.background }}
+        data={data}
+        renderItem={renderItem}
+        keyExtractor={keyExtractor}
+        ItemSeparatorComponent={seperator}
+      />
+    </React.Fragment>
   )
+}
+
+TweetList.propTypes = {
+  navigation: PropTypes.shape({
+    push: PropTypes.function,
+  }).isRequired,
+}
+
+renderItem.propTypes = {
+  item: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    avatar: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    handle: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+    content: PropTypes.string.isRequired,
+    image: PropTypes.string,
+    comments: PropTypes.number.isRequired,
+    retweets: PropTypes.number.isRequired,
+    hearts: PropTypes.number.isRequired,
+  }).isRequired,
 }
 
 const tweets = [

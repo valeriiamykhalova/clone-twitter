@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { View } from 'react-native'
 import { DrawerItem, DrawerContentScrollView } from '@react-navigation/drawer'
 import {
@@ -54,37 +55,11 @@ export default function DrawerContent(props) {
         </View>
 
         <Drawer.Section style={styles.drawerSection}>
-          <DrawerItem
-            icon={({ color, size }) => (
-              <MaterialCommunityIcons
-                name="account-outline"
-                color={color}
-                size={size}
-              />
-            )}
-            label="Profile"
-            onPress={() => {}}
-          />
+          <DrawerItem icon={accountIcon} label="Profile" />
 
-          <DrawerItem
-            icon={({ color, size }) => (
-              <MaterialCommunityIcons name="tune" color={color} size={size} />
-            )}
-            label="Preferences"
-            onPress={() => {}}
-          />
+          <DrawerItem icon={preferences} label="Preferences" />
 
-          <DrawerItem
-            icon={({ color, size }) => (
-              <MaterialCommunityIcons
-                name="bookmark-outline"
-                color={color}
-                size={size}
-              />
-            )}
-            label="Bookmarks"
-            onPress={() => {}}
-          />
+          <DrawerItem icon={bookmark} label="Bookmarks" />
         </Drawer.Section>
 
         <Drawer.Section title="Preferences">
@@ -111,4 +86,38 @@ export default function DrawerContent(props) {
       </View>
     </DrawerContentScrollView>
   )
+}
+
+function accountIcon({ color, size }) {
+  return (
+    <MaterialCommunityIcons name="account-outline" color={color} size={size} />
+  )
+}
+
+function bookmark({ color, size }) {
+  return (
+    <MaterialCommunityIcons name="bookmark-outline" color={color} size={size} />
+  )
+}
+function preferences({ color, size }) {
+  return <MaterialCommunityIcons name="tune" color={color} size={size} />
+}
+
+DrawerContent.propTypes = {
+  toggleTheme: PropTypes.func.isRequired,
+}
+
+accountIcon.propTypes = {
+  color: PropTypes.string.isRequired,
+  size: PropTypes.number.isRequired,
+}
+
+bookmark.propTypes = {
+  color: PropTypes.string.isRequired,
+  size: PropTypes.number.isRequired,
+}
+
+preferences.propTypes = {
+  color: PropTypes.string.isRequired,
+  size: PropTypes.number.isRequired,
 }

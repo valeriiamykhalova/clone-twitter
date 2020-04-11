@@ -15,4 +15,8 @@ export default StyleSheet.create({
   button: {
     marginTop: 20,
   },
+
+  label: {
+    color: 'white',
+  },
 })

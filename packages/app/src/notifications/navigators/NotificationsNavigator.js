@@ -9,7 +9,7 @@ const initialLayout = { width: Dimensions.get('window').width }
 
 const All = () => <AllNotifications />
 
-export default function NotificationsTabNavigator() {
+export default function NotificationsNavigator() {
   const [index, setIndex] = React.useState(0)
   const [routes] = React.useState([
     { key: 'all', title: 'All' },
@@ -25,14 +25,16 @@ export default function NotificationsTabNavigator() {
 
   const tabBarColor = theme.colors.surface
 
-  const renderTabBar = props => (
-    <TabBar
-      {...props}
-      indicatorStyle={{ backgroundColor: theme.colors.primary }}
-      style={{ backgroundColor: tabBarColor, shadowColor: theme.colors.text }}
-      labelStyle={{ color: theme.colors.primary }}
-    />
-  )
+  function renderTabBar(props) {
+    return (
+      <TabBar
+        {...props}
+        indicatorStyle={{ backgroundColor: theme.colors.primary }}
+        style={{ backgroundColor: tabBarColor, shadowColor: theme.colors.text }}
+        labelStyle={{ color: theme.colors.primary }}
+      />
+    )
+  }
 
   return (
     <React.Fragment>

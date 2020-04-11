@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, Image, ScrollView } from 'react-native'
 import { Surface, Title, Caption, Avatar, Subheading } from 'react-native-paper'
+import PropTypes from 'prop-types'
 
 import styles from './styles'
 
@@ -32,4 +33,16 @@ export default function TweetDetail(props) {
       </Surface>
     </ScrollView>
   )
+}
+
+TweetDetail.propTypes = {
+  route: PropTypes.shape({
+    params: PropTypes.shape({
+      avatar: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      handle: PropTypes.string.isRequired,
+      content: PropTypes.string.isRequired,
+      image: PropTypes.string,
+    }),
+  }),
 }

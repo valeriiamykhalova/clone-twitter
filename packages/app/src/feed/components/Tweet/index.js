@@ -1,5 +1,6 @@
 import React from 'react'
 import { View, Image, TouchableOpacity } from 'react-native'
+import PropTypes from 'prop-types'
 import {
   Surface,
   Title,
@@ -17,8 +18,12 @@ export default function Tweet(props) {
 
   const darkIconColor = theme.dark ? theme.colors.placeholder : null
 
+  function goToTweet() {
+    props.onPress(props.id)
+  }
+
   return (
-    <TouchableRipple onPress={() => props.onPress(props.id)}>
+    <TouchableRipple onPress={goToTweet}>
       <Surface style={styles.container}>
         <View style={styles.leftColumn}>
           <Avatar.Image source={{ uri: props.avatar }} size={60} />
@@ -86,4 +91,22 @@ export default function Tweet(props) {
       </Surface>
     </TouchableRipple>
   )
+}
+
+Tweet.propTypes = {
+  onPress: PropTypes.func.isRequired,
+  id: PropTypes.number.isRequired,
+  avatar: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  handle: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
+  image: PropTypes.string,
+  comments: PropTypes.number.isRequired,
+  retweets: PropTypes.number.isRequired,
+  hearts: PropTypes.number.isRequired,
+}
+
+Tweet.defaultProps = {
+  image: null,
 }

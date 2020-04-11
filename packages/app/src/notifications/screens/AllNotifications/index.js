@@ -14,6 +14,10 @@ function keyExtractor(item) {
 export default function AllNotifications() {
   const theme = useTheme()
 
+  function seperator() {
+    return <View style={{ height: StyleSheet.hairlineWidth }} />
+  }
+
   return (
     <FlatList
       contentContainerStyle={{ backgroundColor: theme.colors.background }}
@@ -21,9 +25,7 @@ export default function AllNotifications() {
       data={notifications}
       renderItem={renderItem}
       keyExtractor={keyExtractor}
-      ItemSeparatorComponent={() => (
-        <View style={{ height: StyleSheet.hairlineWidth }} />
-      )}
+      ItemSeparatorComponent={seperator}
     />
   )
 }

@@ -23,4 +23,17 @@ export default StyleSheet.create({
     alignItems: 'center',
     marginBottom: 10,
   },
+
+  avatar: {
+    marginRight: 10,
+  },
+
+  text: {
+    marginBottom: 10,
+  },
+
+  content: {
+    fontSize: 12,
+    opacity: 0.5,
+  },
 })
