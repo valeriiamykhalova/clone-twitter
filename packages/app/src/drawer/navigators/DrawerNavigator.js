@@ -7,9 +7,9 @@ import HomeNavigator from '@/home/navigators/HomeNavigator'
 
 const Drawer = createDrawerNavigator()
 
-export default function RootNavigator({ toggleTheme, user }) {
+export default function RootNavigator({ toggleTheme }) {
   function renderDrawerContent() {
-    return <DrawerContent toggleTheme={toggleTheme} user={user} />
+    return <DrawerContent toggleTheme={toggleTheme} />
   }
 
   return (
@@ -21,9 +21,4 @@ export default function RootNavigator({ toggleTheme, user }) {
 
 RootNavigator.propTypes = {
   toggleTheme: PropTypes.func.isRequired,
-  user: PropTypes.shape({
-    first_name: PropTypes.string.isRequired,
-    last_name: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired,
-  }),
 }

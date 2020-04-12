@@ -19,8 +19,9 @@ import * as firebase from 'firebase'
 import styles from './styles'
 
 export default function DrawerContent(props) {
-  const { logOut } = useContext(AuthContext)
-  const { first_name, last_name, id } = props.user
+  const { logOut, getUser } = useContext(AuthContext)
+  const { first_name, last_name, id } = getUser()
+
   const theme = useTheme()
 
   function LogOut() {
@@ -113,11 +114,6 @@ function Preferences({ color, size }) {
 
 DrawerContent.propTypes = {
   toggleTheme: PropTypes.func.isRequired,
-  user: PropTypes.shape({
-    first_name: PropTypes.string.isRequired,
-    last_name: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired,
-  }),
 }
 
 AccountIcon.propTypes = {

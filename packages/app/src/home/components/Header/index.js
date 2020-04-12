@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import AuthContext from '@/auth/AuthContext'
 import PropTypes from 'prop-types'
 import { TouchableOpacity } from 'react-native'
 import { Appbar, Avatar, useTheme } from 'react-native-paper'
@@ -6,6 +7,10 @@ import { MaterialCommunityIcons } from '@expo/vector-icons'
 import styles from './styles'
 
 export default function Header({ scene, navigation }) {
+  const { getUser } = useContext(AuthContext)
+
+  const { id } = getUser()
+
   const theme = useTheme()
   const { options } = scene.descriptor
   const title =
@@ -21,8 +26,7 @@ export default function Header({ scene, navigation }) {
         <Avatar.Image
           size={40}
           source={{
-            uri:
-              'https://graph.facebook.com/100012121187000/picture?height=400',
+            uri: `https://graph.facebook.com/${id}/picture?height=400`,
           }}
         />
       </TouchableOpacity>

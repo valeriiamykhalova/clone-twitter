@@ -60,8 +60,9 @@ export default function Root() {
       logOut: () => {
         setUser(null)
       },
+      getUser: () => user,
     }),
-    []
+    [user]
   )
 
   const theme = isDarkTheme ? CombinedDarkTheme : CombinedDefaultTheme
@@ -79,7 +80,7 @@ export default function Root() {
       >
         <NavigationContainer theme={theme}>
           {user ? (
-            <RootNavigator toggleTheme={ToggleTheme} user={user} />
+            <RootNavigator toggleTheme={ToggleTheme} />
           ) : (
             <AuthNavigator />
           )}
