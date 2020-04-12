@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { View } from 'react-native'
 import { DrawerItem, DrawerContentScrollView } from '@react-navigation/drawer'
@@ -13,20 +13,18 @@ import {
   Switch,
   useTheme,
 } from 'react-native-paper'
-import AuthContext from '@/auth/AuthContext'
+import useUser from '@/app/user/useUser'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import * as firebase from 'firebase'
 import styles from './styles'
 
 export default function DrawerContent(props) {
-  const { logOut, getUser } = useContext(AuthContext)
-  const { first_name, last_name, id } = getUser()
+  const { first_name, last_name, id } = useUser()
 
   const theme = useTheme()
 
   function LogOut() {
     firebase.auth().signOut()
-    logOut()
   }
 
   return (

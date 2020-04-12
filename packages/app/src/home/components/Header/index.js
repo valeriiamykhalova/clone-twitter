@@ -1,5 +1,5 @@
-import React, { useContext } from 'react'
-import AuthContext from '@/auth/AuthContext'
+import React from 'react'
+import useUser from '@/app/user/useUser'
 import PropTypes from 'prop-types'
 import { TouchableOpacity } from 'react-native'
 import { Appbar, Avatar, useTheme } from 'react-native-paper'
@@ -7,9 +7,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons'
 import styles from './styles'
 
 export default function Header({ scene, navigation }) {
-  const { getUser } = useContext(AuthContext)
-
-  const { id } = getUser()
+  const { id } = useUser()
 
   const theme = useTheme()
   const { options } = scene.descriptor

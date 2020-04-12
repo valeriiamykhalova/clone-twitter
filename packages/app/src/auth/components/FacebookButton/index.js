@@ -10,6 +10,7 @@ export default function FacebookButton({ onPress }) {
     <TouchableHighlight style={styles.button} onPress={onPress}>
       <View style={styles.buttonContainer}>
         <Icon name="facebook-f" size={20} color="white" />
+
         <Text style={styles.buttonText}>Login with Facebook</Text>
       </View>
     </TouchableHighlight>

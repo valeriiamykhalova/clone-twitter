@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   DefaultTheme as PaperDefaultTheme,
   DarkTheme as PaperDarkTheme,
@@ -9,9 +9,9 @@ import {
   DarkTheme as NavigationDarkTheme,
   DefaultTheme as NavigationDefaultTheme,
 } from '@react-navigation/native'
-import RootNavigator from './RootNavigator'
+import MainNavigator from './MainNavigator'
 import AuthNavigator from '@/auth/navigators/AuthNavigator'
-import AuthContext from '@/auth/AuthContext'
+import { UserProvider } from './user/UserProvider'
 import * as firebase from 'firebase'
 
 const CombinedDefaultTheme = {
@@ -50,29 +50,38 @@ if (firebase.apps.length === 0) {
 
 export default function Root() {
   const [isDarkTheme, setIsDarkTheme] = useState(false)
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState(undefined)
 
-  const authContext = useMemo(
-    () => ({
-      logIn: user => {
-        setUser(user)
-      },
-      logOut: () => {
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged(auth => {
+      if (auth) {
+        const firebaseRef = firebase.database().ref('users')
+
+        firebaseRef.child(auth.uid).on('value', snap => {
+          setUser(snap.val())
+        })
+      } else {
+        if (user === undefined) return
+
+        firebase
+          .database()
+          .ref('users')
+          .child(user.uid)
+          .off('value')
+
         setUser(null)
-      },
-      getUser: () => user,
-    }),
-    [user]
-  )
+      }
+    })
+  }, [])
 
   const theme = isDarkTheme ? CombinedDarkTheme : CombinedDefaultTheme
 
-  function ToggleTheme() {
+  function toggleTheme() {
     setIsDarkTheme(isDark => !isDark)
   }
 
   return (
-    <AuthContext.Provider value={authContext}>
+    <UserProvider value={user}>
       <PaperProvider
         theme={{
           ...theme,
@@ -80,12 +89,12 @@ export default function Root() {
       >
         <NavigationContainer theme={theme}>
           {user ? (
-            <RootNavigator toggleTheme={ToggleTheme} />
+            <MainNavigator toggleTheme={toggleTheme} />
           ) : (
             <AuthNavigator />
           )}
         </NavigationContainer>
       </PaperProvider>
-    </AuthContext.Provider>
+    </UserProvider>
   )
 }

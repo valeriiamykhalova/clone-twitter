@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
-import AuthContext from '../../AuthContext'
+import React, { useState } from 'react'
 import { View } from 'react-native'
 import Loading from '@/loading/screens/Loading'
 import FacebookButton from '../../components/FacebookButton'
@@ -9,47 +8,25 @@ import * as firebase from 'firebase'
 
 const FB_APP_ID = '2646921238962818'
 
+const authenticate = token => {
+  const credential = firebase.auth.FacebookAuthProvider.credential(token)
+
+  return firebase.auth().signInWithCredential(credential)
+}
+
+const createUser = (uid, userData) => {
+  firebase
+    .database()
+    .ref('users')
+    .child(uid)
+    .update({ ...userData, uid })
+}
+
 export default function Login() {
-  const [loading, setLoading] = useState(true)
-
-  const { logIn } = useContext(AuthContext)
-
-  useEffect(() => {
-    firebase.auth().onAuthStateChanged(auth => {
-      if (auth) {
-        const firebaseRef = firebase.database().ref('users')
-
-        firebaseRef.child(auth.uid).on('value', snap => {
-          const user = snap.val()
-
-          if (user != null) {
-            firebaseRef.child(auth.uid).off('value')
-            logIn(user)
-          }
-        })
-      } else {
-        setLoading(false)
-      }
-    })
-  }, [])
-
-  const authenticate = token => {
-    const credential = firebase.auth.FacebookAuthProvider.credential(token)
-
-    return firebase.auth().signInWithCredential(credential)
-  }
-
-  const createUser = (uid, userData) => {
-    firebase
-      .database()
-      .ref('users')
-      .child(uid)
-      .update({ ...userData, uid })
-  }
+  const [loading, setLoading] = useState(false)
 
   async function LogIn() {
     setLoading(true)
-
     await Facebook.initializeAsync(FB_APP_ID)
     const options = {
       permissions: ['public_profile', 'email'],
