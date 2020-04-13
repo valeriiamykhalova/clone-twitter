@@ -12,6 +12,7 @@ import {
 import MainNavigator from './MainNavigator'
 import AuthNavigator from '@/auth/navigators/AuthNavigator'
 import { UserProvider } from './user/UserProvider'
+import { ThemeProvider } from './theme/ThemeProvider'
 import * as firebase from 'firebase'
 
 const CombinedDefaultTheme = {
@@ -53,21 +54,11 @@ export default function Root() {
   const [user, setUser] = useState(undefined)
 
   useEffect(() => {
-    if (user) {
-      firebase
-        .database()
-        .ref('users')
-        .child(user.uid)
-        .off('value')
-    }
-  }, [user])
-
-  useEffect(() => {
     firebase.auth().onAuthStateChanged(auth => {
       if (auth) {
         const firebaseRef = firebase.database().ref('users')
 
-        firebaseRef.child(auth.uid).on('value', snap => {
+        firebaseRef.child(auth.uid).once('value', snap => {
           const user = snap.val()
 
           setUser(user)
@@ -80,25 +71,19 @@ export default function Root() {
 
   const theme = isDarkTheme ? CombinedDarkTheme : CombinedDefaultTheme
 
-  function toggleTheme() {
-    setIsDarkTheme(isDark => !isDark)
-  }
-
   return (
     <UserProvider value={user}>
-      <PaperProvider
-        theme={{
-          ...theme,
-        }}
-      >
-        <NavigationContainer theme={theme}>
-          {user ? (
-            <MainNavigator toggleTheme={toggleTheme} />
-          ) : (
-            <AuthNavigator />
-          )}
-        </NavigationContainer>
-      </PaperProvider>
+      <ThemeProvider value={{ isDarkTheme, setIsDarkTheme }}>
+        <PaperProvider
+          theme={{
+            ...theme,
+          }}
+        >
+          <NavigationContainer theme={theme}>
+            {user ? <MainNavigator /> : <AuthNavigator />}
+          </NavigationContainer>
+        </PaperProvider>
+      </ThemeProvider>
     </UserProvider>
   )
 }

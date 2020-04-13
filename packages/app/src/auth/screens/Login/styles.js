@@ -6,10 +6,4 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-
-  button: {
-    width: 100,
-    height: 40,
-    backgroundColor: 'lightblue',
-  },
 })

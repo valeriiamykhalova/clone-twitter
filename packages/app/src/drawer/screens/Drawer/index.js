@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 import { View } from 'react-native'
+import ThemeContext from '@/app/theme/ThemeContext'
 import { DrawerItem, DrawerContentScrollView } from '@react-navigation/drawer'
 import {
   Avatar,
@@ -20,11 +21,16 @@ import styles from './styles'
 
 export default function DrawerContent(props) {
   const { first_name, last_name, id } = useUser()
+  const { isDarkTheme, setIsDarkTheme } = useContext(ThemeContext)
 
   const theme = useTheme()
 
   function LogOut() {
     firebase.auth().signOut()
+  }
+
+  function toggleTheme() {
+    setIsDarkTheme(!isDarkTheme)
   }
 
   return (
@@ -72,7 +78,7 @@ export default function DrawerContent(props) {
         </Drawer.Section>
 
         <Drawer.Section title="Preferences">
-          <TouchableRipple onPress={props.toggleTheme}>
+          <TouchableRipple onPress={toggleTheme}>
             <View style={styles.preference}>
               <Text>Dark Theme</Text>
 
@@ -108,10 +114,6 @@ function Bookmark({ color, size }) {
 }
 function Preferences({ color, size }) {
   return <MaterialCommunityIcons name="tune" color={color} size={size} />
-}
-
-DrawerContent.propTypes = {
-  toggleTheme: PropTypes.func.isRequired,
 }
 
 AccountIcon.propTypes = {
