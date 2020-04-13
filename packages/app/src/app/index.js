@@ -53,22 +53,26 @@ export default function Root() {
   const [user, setUser] = useState(undefined)
 
   useEffect(() => {
+    if (user) {
+      firebase
+        .database()
+        .ref('users')
+        .child(user.uid)
+        .off('value')
+    }
+  }, [user])
+
+  useEffect(() => {
     firebase.auth().onAuthStateChanged(auth => {
       if (auth) {
         const firebaseRef = firebase.database().ref('users')
 
         firebaseRef.child(auth.uid).on('value', snap => {
-          setUser(snap.val())
+          const user = snap.val()
+
+          setUser(user)
         })
       } else {
-        if (user === undefined) return
-
-        firebase
-          .database()
-          .ref('users')
-          .child(user.uid)
-          .off('value')
-
         setUser(null)
       }
     })
