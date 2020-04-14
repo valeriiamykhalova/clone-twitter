@@ -10,7 +10,6 @@ import {
   DefaultTheme as NavigationDefaultTheme,
 } from '@react-navigation/native'
 import MainNavigator from './MainNavigator'
-import AuthNavigator from '@/auth/navigators/AuthNavigator'
 import { UserProvider } from './user/UserProvider'
 import { ThemeProvider } from './theme/ThemeProvider'
 import * as firebase from 'firebase'
@@ -80,7 +79,7 @@ export default function Root() {
           }}
         >
           <NavigationContainer theme={theme}>
-            {user ? <MainNavigator /> : <AuthNavigator />}
+            <MainNavigator />
           </NavigationContainer>
         </PaperProvider>
       </ThemeProvider>

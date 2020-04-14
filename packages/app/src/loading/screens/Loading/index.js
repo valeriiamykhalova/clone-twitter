@@ -9,7 +9,7 @@ export default function Loading() {
 
   return (
     <View style={[styles.container, { backgroundColor: theme.colors.primary }]}>
-      <MaterialCommunityIcons name="twitter" size={70} color="white" />
+      <MaterialCommunityIcons name="twitter" size={100} color="white" />
     </View>
   )
 }
