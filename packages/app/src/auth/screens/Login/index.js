@@ -19,7 +19,7 @@ const createUser = (uid, userData) => {
     .database()
     .ref('users')
     .child(uid)
-    .update({ ...userData, uid })
+    .update({ ...userData, id: uid, facebookId: userData.id })
 }
 
 export default function Login() {

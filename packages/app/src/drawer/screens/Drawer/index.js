@@ -20,7 +20,7 @@ import * as firebase from 'firebase'
 import styles from './styles'
 
 export default function DrawerContent(props) {
-  const { first_name, last_name, id } = useUser()
+  const { first_name, last_name, facebookId } = useUser()
   const { isDarkTheme, setIsDarkTheme } = useContext(ThemeContext)
 
   const theme = useTheme()
@@ -39,7 +39,7 @@ export default function DrawerContent(props) {
         <View style={styles.userInfoSection}>
           <Avatar.Image
             source={{
-              uri: `https://graph.facebook.com/${id}/picture?height=400`,
+              uri: `https://graph.facebook.com/${facebookId}/picture?height=400`,
             }}
             size={50}
           />
