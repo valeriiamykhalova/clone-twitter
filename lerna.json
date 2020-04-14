@@ -1,0 +1,7 @@
+{
+  "lerna": "3.16.4",
+  "npmClient": "npm",
+  "npmClientArgs": ["--exact"],
+  "packages": [".", "packages/*"],
+  "version": "0.0.0"
+}

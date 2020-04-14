@@ -1,0 +1,15 @@
+{
+  "Facebook": {
+    "APP_ID": "2646921238962818"
+  },
+  "Firebase": {
+    "API_KEY": "AIzaSyC64Pbs4EiU5mixNyCivNemZCcUBugmZIM",
+    "AUTH_DOMAIN": "clone-twitter-fa80c.firebaseapp.com",
+    "DATABASE_URL": "https://clone-twitter-fa80c.firebaseio.com",
+    "PROJECT_ID": "clone-twitter-fa80c",
+    "STORAGE_BUCKET": "clone-twitter-fa80c.appspot.com"
+  },
+  "PrivateApi": {
+    "API_URL": "https://us-central1-admin-demo-e2b3f.cloudfunctions.net"
+  }
+}
