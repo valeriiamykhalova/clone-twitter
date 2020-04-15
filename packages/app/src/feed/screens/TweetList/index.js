@@ -5,7 +5,7 @@ import { useTheme } from 'react-native-paper'
 
 import Tweet from '../../components/Tweet'
 
-function renderItem({ item }) {
+function Item({ item }) {
   return <Tweet {...item} />
 }
 
@@ -25,7 +25,7 @@ export default function TweetList(props) {
       }),
   }))
 
-  function seperator() {
+  function Seperator() {
     return <View style={{ height: StyleSheet.hairlineWidth }} />
   }
 
@@ -35,9 +35,9 @@ export default function TweetList(props) {
         contentContainerStyle={{ backgroundColor: theme.colors.background }}
         style={{ backgroundColor: theme.colors.background }}
         data={data}
-        renderItem={renderItem}
+        renderItem={Item}
         keyExtractor={keyExtractor}
-        ItemSeparatorComponent={seperator}
+        ItemSeparatorComponent={Seperator}
       />
     </React.Fragment>
   )
@@ -49,7 +49,7 @@ TweetList.propTypes = {
   }).isRequired,
 }
 
-renderItem.propTypes = {
+Item.propTypes = {
   item: PropTypes.shape({
     id: PropTypes.number.isRequired,
     avatar: PropTypes.string.isRequired,

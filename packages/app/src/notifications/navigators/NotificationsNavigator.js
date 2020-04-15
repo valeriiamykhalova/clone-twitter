@@ -1,7 +1,7 @@
 import React from 'react'
 import { Dimensions } from 'react-native'
 import { useTheme } from 'react-native-paper'
-import { TabView, SceneMap, TabBar } from 'react-native-tab-view'
+import { TabView, SceneMap, TabBar as Tab } from 'react-native-tab-view'
 
 import AllNotifications from '../screens/AllNotifications'
 
@@ -25,9 +25,9 @@ export default function NotificationsNavigator() {
 
   const tabBarColor = theme.colors.surface
 
-  function renderTabBar(props) {
+  function TabBar(props) {
     return (
-      <TabBar
+      <Tab
         {...props}
         indicatorStyle={{ backgroundColor: theme.colors.primary }}
         style={{ backgroundColor: tabBarColor, shadowColor: theme.colors.text }}
@@ -43,7 +43,7 @@ export default function NotificationsNavigator() {
         renderScene={renderScene}
         onIndexChange={setIndex}
         initialLayout={initialLayout}
-        renderTabBar={renderTabBar}
+        renderTabBar={TabBar}
       />
     </React.Fragment>
   )

@@ -10,7 +10,7 @@ export default function MainNavigator() {
   const user = useUser()
 
   return (
-    <RootStack.Navigator initialRouteName="TabList" headerMode="none">
+    <RootStack.Navigator initialRouteName="Login" headerMode="none">
       {user ? (
         <RootStack.Screen name="App" component={DrawerNavigator} />
       ) : (
@@ -18,7 +18,7 @@ export default function MainNavigator() {
           name="Login"
           component={Login}
           options={{
-            animationTypeForReplace: 'pop',
+            animationTypeForReplace: user ? 'push' : 'pop',
           }}
         />
       )}

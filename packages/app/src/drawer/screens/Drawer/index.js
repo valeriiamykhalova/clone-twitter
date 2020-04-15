@@ -19,15 +19,15 @@ import { MaterialCommunityIcons } from '@expo/vector-icons'
 import * as firebase from 'firebase'
 import styles from './styles'
 
+function logOut() {
+  firebase.auth().signOut()
+}
+
 export default function DrawerContent(props) {
   const { first_name, last_name, facebookId } = useUser()
   const { isDarkTheme, setIsDarkTheme } = useContext(ThemeContext)
 
   const theme = useTheme()
-
-  function LogOut() {
-    firebase.auth().signOut()
-  }
 
   function toggleTheme() {
     setIsDarkTheme(!isDarkTheme)
@@ -90,7 +90,7 @@ export default function DrawerContent(props) {
         </Drawer.Section>
 
         <Drawer.Section title="Other">
-          <TouchableRipple onPress={LogOut}>
+          <TouchableRipple onPress={logOut}>
             <View style={styles.preference}>
               <Text>Log Out</Text>
             </View>

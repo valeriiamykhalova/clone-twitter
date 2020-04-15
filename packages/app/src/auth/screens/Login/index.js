@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
-import { View } from 'react-native'
-import Loading from '@/loading/screens/Loading'
+import React from 'react'
+import { View, AsyncStorage } from 'react-native'
 import FacebookButton from '../../components/FacebookButton'
 import styles from './styles'
 import * as Facebook from 'expo-facebook'
@@ -8,25 +7,34 @@ import * as firebase from 'firebase'
 
 const FB_APP_ID = '2646921238962818'
 
+async function storeUserData(user) {
+  try {
+    await AsyncStorage.setItem('user', JSON.stringify(user))
+  } catch (error) {
+    console.log(`Can't store data to async storage`)
+  }
+}
+
 const authenticate = token => {
   const credential = firebase.auth.FacebookAuthProvider.credential(token)
 
   return firebase.auth().signInWithCredential(credential)
 }
 
-const createUser = (uid, userData) => {
+const createUser = (uid, data) => {
+  const userData = { ...data, id: uid, facebookId: data.id }
+
   firebase
     .database()
     .ref('users')
     .child(uid)
-    .update({ ...userData, id: uid, facebookId: userData.id })
+    .update(userData)
+
+  storeUserData(userData)
 }
 
 export default function Login() {
-  const [loading, setLoading] = useState(false)
-
-  async function LogIn() {
-    setLoading(true)
+  async function logIn() {
     await Facebook.initializeAsync(FB_APP_ID)
     const options = {
       permissions: ['public_profile', 'email'],
@@ -51,13 +59,9 @@ export default function Login() {
     }
   }
 
-  if (loading) {
-    return <Loading />
-  }
-
   return (
     <View style={styles.container}>
-      <FacebookButton onPress={LogIn} />
+      <FacebookButton onPress={logIn} />
     </View>
   )
 }

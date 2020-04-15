@@ -3,7 +3,7 @@ import { View, FlatList, StyleSheet } from 'react-native'
 import { useTheme } from 'react-native-paper'
 import Notification from '../../components/Notification'
 
-function renderItem(item) {
+function Item(item) {
   return <Notification {...item} />
 }
 
@@ -14,7 +14,7 @@ function keyExtractor(item) {
 export default function AllNotifications() {
   const theme = useTheme()
 
-  function seperator() {
+  function Seperator() {
     return <View style={{ height: StyleSheet.hairlineWidth }} />
   }
 
@@ -23,9 +23,9 @@ export default function AllNotifications() {
       contentContainerStyle={{ backgroundColor: theme.colors.background }}
       style={{ backgroundColor: theme.colors.background }}
       data={notifications}
-      renderItem={renderItem}
+      renderItem={Item}
       keyExtractor={keyExtractor}
-      ItemSeparatorComponent={seperator}
+      ItemSeparatorComponent={Seperator}
     />
   )
 }
