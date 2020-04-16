@@ -1,6 +1,5 @@
 import list from './list'
-// import create from './create'
-// import edit from './edit'
+import edit from './edit'
 import DataProviders from '@/app/constants/DataProviders'
 import DataSources from '@/app/constants/DataSources'
 import GroupIcon from '@material-ui/icons/Group'
@@ -10,8 +9,7 @@ export default {
   label: 'Users',
   icon: GroupIcon,
   list,
-  //   create,
-  //   edit,
+  edit,
   dataProvider: {
     id: DataProviders.FIREBASE_DATA_PROVIDER,
     path: '/users',
