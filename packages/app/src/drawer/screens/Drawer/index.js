@@ -37,12 +37,7 @@ export default function DrawerContent(props) {
     <DrawerContentScrollView {...props}>
       <View style={styles.drawerContent}>
         <View style={styles.userInfoSection}>
-          <Avatar.Image
-            source={{
-              uri: user.image.uri,
-            }}
-            size={50}
-          />
+          <Avatar.Image source={user.image} size={50} />
 
           <Title style={styles.title}>
             {user.firstName} {user.lastName}

@@ -22,12 +22,7 @@ export default function Header({ scene, navigation }) {
   return (
     <Appbar.Header theme={{ colors: { primary: theme.colors.surface } }}>
       <TouchableOpacity style={styles.touchable} onPress={onPress}>
-        <Avatar.Image
-          size={40}
-          source={{
-            uri: image.uri,
-          }}
-        />
+        <Avatar.Image size={40} source={image} />
       </TouchableOpacity>
       <Appbar.Content
         title={

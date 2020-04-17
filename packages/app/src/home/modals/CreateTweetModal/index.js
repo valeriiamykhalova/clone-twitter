@@ -29,8 +29,8 @@ export default function CreateTweetModal(props) {
       comments: 0,
       retweets: 0,
       hearts: 0,
-      createdAt: Date.now(),
-      updatedAt: Date.now(),
+      createdAt: firebase.database.ServerValue.TIMESTAMP,
+      updatedAt: firebase.database.ServerValue.TIMESTAMP,
     }
 
     createTweet(tweetData)
@@ -41,19 +41,9 @@ export default function CreateTweetModal(props) {
     props.navigation.goBack()
   }
 
-  function onChangeText(writtenText) {
-    setText(writtenText)
-  }
-
-  function changeInputTheme() {
-    if (!theme.dark) {
-      return {
-        colors: {
-          background: theme.colors.surface,
-        },
-      }
-    }
-  }
+  const inputTheme = theme.dark
+    ? null
+    : { colors: { background: theme.colors.surface } }
 
   return (
     <>
@@ -61,6 +51,7 @@ export default function CreateTweetModal(props) {
         <Button onPress={hideModal} style={styles.cancelButton}>
           Cancel
         </Button>
+
         <Button
           onPress={onPressCreateTweet}
           mode="contained"
@@ -69,19 +60,17 @@ export default function CreateTweetModal(props) {
           <Text style={styles.tweetButtonText}>Tweet</Text>
         </Button>
       </View>
+
       <ScrollView contentContainerStyle={[styles.scrollViewContent]}>
         <View style={styles.imageContainer}>
-          <Avatar.Image
-            style={styles.avatar}
-            source={{ uri: image.uri }}
-            size={40}
-          />
+          <Avatar.Image style={styles.avatar} source={image} size={40} />
         </View>
+
         <TextInput
-          theme={changeInputTheme()}
+          theme={inputTheme}
           placeholder="What's going on?"
           value={text}
-          onChangeText={onChangeText}
+          onChangeText={setText}
           multiline
           autoFocus
           style={styles.input}

@@ -20,8 +20,8 @@ const createUser = (uid, data) => {
     id: uid,
     firstName: data.first_name,
     lastName: data.last_name,
-    createdAt: Date.now(),
-    updatedAt: Date.now(),
+    createdAt: firebase.database.ServerValue.TIMESTAMP,
+    updatedAt: firebase.database.ServerValue.TIMESTAMP,
     image: {
       uri: fbURI,
     },
