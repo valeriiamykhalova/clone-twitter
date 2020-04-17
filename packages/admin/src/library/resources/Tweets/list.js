@@ -10,7 +10,7 @@ import {
 } from 'react-admin'
 import { Filter } from 'react-admin-patch'
 
-function UsersListFilter(props) {
+function TweetsListFilter(props) {
   return (
     <Filter {...props}>
       <SearchInput source="q" alwaysOn />
@@ -20,9 +20,11 @@ function UsersListFilter(props) {
 
 export default function UsersList(props) {
   return (
-    <List {...props} title="Users" filters={<UsersListFilter />}>
+    <List {...props} title="Tweets" filters={<TweetsListFilter />}>
       <Datagrid>
         <DateField />
+
+        <TextField source="content" label="Content" />
 
         <TextField source="firstName" label="First name" />
 
