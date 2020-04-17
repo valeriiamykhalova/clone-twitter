@@ -11,6 +11,7 @@ export default function Header({ scene, navigation }) {
 
   const theme = useTheme()
   const { options } = scene.descriptor
+
   const title =
     options.headerTitle !== undefined ? options.headerTitle : scene.route.name
 

@@ -23,6 +23,14 @@ export default function FAB(props) {
       break
   }
 
+  function showTweetModal() {
+    props.navigation.navigate('CreateTweet')
+  }
+
+  function showModal() {
+    return routeName === 'Messages' ? null : showTweetModal()
+  }
+
   return (
     <Portal>
       <ReactPaperFAB
@@ -35,6 +43,7 @@ export default function FAB(props) {
             accent: theme.colors.primary,
           },
         }}
+        onPress={showModal}
       />
     </Portal>
   )
@@ -50,5 +59,8 @@ FAB.propTypes = {
         })
       ).isRequired,
     }),
+  }).isRequired,
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
   }).isRequired,
 }
