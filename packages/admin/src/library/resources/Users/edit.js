@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Edit, SimpleForm, TextInput } from 'react-admin'
 
-import { requiredFieldValidation, required, number } from '@/shared/validators'
+import { requiredFieldValidation } from '@/shared/validators'
 
 export default function UsersEdit(props) {
   return (
@@ -10,21 +10,15 @@ export default function UsersEdit(props) {
       <SimpleForm>
         <div>
           <TextInput
-            source="first_name"
+            source="firstName"
             label="First name"
             validate={requiredFieldValidation}
           />
 
           <TextInput
-            source="last_name"
+            source="lastName"
             label="Last name"
             validate={requiredFieldValidation}
-          />
-
-          <TextInput
-            source="facebookId"
-            label="Facebook ID"
-            validate={[required(), number()]}
           />
         </div>
       </SimpleForm>

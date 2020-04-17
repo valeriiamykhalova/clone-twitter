@@ -24,14 +24,14 @@ export default function UsersList(props) {
       {...props}
       title="Users"
       filters={<UsersListFilter />}
-      sort={{ field: 'first_name', order: 'ASC' }}
+      sort={{ field: 'firstName', order: 'ASC' }}
     >
       <Datagrid>
         <DateField />
 
-        <TextField source="first_name" label="First name" />
+        <TextField source="firstName" label="First name" />
 
-        <TextField source="last_name" label="Last name" />
+        <TextField source="lastName" label="Last name" />
 
         <EditButton />
 
