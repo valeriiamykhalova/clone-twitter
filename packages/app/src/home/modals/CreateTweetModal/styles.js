@@ -16,7 +16,6 @@ export default StyleSheet.create({
   },
 
   tweetButton: {
-    paddingHorizontal: 10,
     color: 'white',
     borderRadius: 50,
   },
