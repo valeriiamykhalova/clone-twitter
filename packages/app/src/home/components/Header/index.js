@@ -7,7 +7,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons'
 import styles from './styles'
 
 export default function Header({ scene, navigation }) {
-  const { facebookId } = useUser()
+  const { image } = useUser()
 
   const theme = useTheme()
   const { options } = scene.descriptor
@@ -24,7 +24,7 @@ export default function Header({ scene, navigation }) {
         <Avatar.Image
           size={40}
           source={{
-            uri: `https://graph.facebook.com/${facebookId}/picture?height=400`,
+            uri: image.uri,
           }}
         />
       </TouchableOpacity>

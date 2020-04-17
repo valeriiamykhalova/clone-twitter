@@ -1,19 +1,11 @@
 import React from 'react'
-import { View, AsyncStorage } from 'react-native'
+import { View } from 'react-native'
 import FacebookButton from '../../components/FacebookButton'
 import styles from './styles'
 import * as Facebook from 'expo-facebook'
 import * as firebase from 'firebase'
 
 const FB_APP_ID = '2646921238962818'
-
-async function storeUserData(user) {
-  try {
-    await AsyncStorage.setItem('user', JSON.stringify(user))
-  } catch (error) {
-    console.log(`Can't store data to async storage`)
-  }
-}
 
 const authenticate = token => {
   const credential = firebase.auth.FacebookAuthProvider.credential(token)
@@ -22,15 +14,24 @@ const authenticate = token => {
 }
 
 const createUser = (uid, data) => {
-  const userData = { ...data, id: uid, facebookId: data.id }
+  const fbURI = `https://graph.facebook.com/${data.id}/picture?height=400`
+
+  const userData = {
+    id: uid,
+    firstName: data.first_name,
+    lastName: data.last_name,
+    createdAt: Date.now(),
+    updatedAt: Date.now(),
+    image: {
+      uri: fbURI,
+    },
+  }
 
   firebase
     .database()
     .ref('users')
     .child(uid)
     .update(userData)
-
-  storeUserData(userData)
 }
 
 export default function Login() {

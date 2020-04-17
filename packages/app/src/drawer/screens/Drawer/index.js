@@ -24,7 +24,7 @@ function logOut() {
 }
 
 export default function DrawerContent(props) {
-  const { first_name, last_name, facebookId } = useUser()
+  const user = useUser()
   const { isDarkTheme, setIsDarkTheme } = useContext(ThemeContext)
 
   const theme = useTheme()
@@ -39,13 +39,13 @@ export default function DrawerContent(props) {
         <View style={styles.userInfoSection}>
           <Avatar.Image
             source={{
-              uri: `https://graph.facebook.com/${facebookId}/picture?height=400`,
+              uri: user.image.uri,
             }}
             size={50}
           />
 
           <Title style={styles.title}>
-            {first_name} {last_name}
+            {user.firstName} {user.lastName}
           </Title>
 
           <Caption style={styles.caption}>@emerell</Caption>
