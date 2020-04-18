@@ -37,7 +37,7 @@ export default function App() {
       <Admin
         dataProvider={dataProvider}
         history={history}
-        title="Admin Demo"
+        title="Admin Twitter"
         authProvider={authProvider}
         customRoutes={pageRoutes}
         loginPage={LoginPage}

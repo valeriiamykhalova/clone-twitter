@@ -8,7 +8,7 @@ import {
   DeleteButton,
   SearchInput,
 } from 'react-admin'
-import { Filter } from 'react-admin-patch'
+import { Filter, ImageField } from 'react-admin-patch'
 
 function UsersListFilter(props) {
   return (
@@ -23,6 +23,13 @@ export default function UsersList(props) {
     <List {...props} title="Users" filters={<UsersListFilter />}>
       <Datagrid>
         <DateField />
+
+        <ImageField
+          source="image.uri"
+          label="Profile image"
+          title="Photo"
+          small
+        />
 
         <TextField source="firstName" label="First name" />
 

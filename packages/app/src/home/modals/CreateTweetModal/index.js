@@ -6,11 +6,28 @@ import { Text, Button, TextInput, Avatar, useTheme } from 'react-native-paper'
 import styles from './styles'
 import useUser from '@/app/user/useUser'
 
-const createTweet = tweetData => {
-  const tweetsRef = firebase.database().ref('/library/tweets')
-  const newTweetRef = tweetsRef.push()
+const createTweet = ({
+  firstName,
+  lastName,
+  content,
+  avatar,
+  createdAt,
+  updatedAt,
+}) => {
+  const tweetRef = firebase
+    .database()
+    .ref('/tweets')
+    .push()
 
-  tweetsRef.child(newTweetRef.key).set({ ...tweetData, id: newTweetRef.key })
+  return tweetRef.set({
+    id: tweetRef.key,
+    firstName,
+    lastName,
+    content,
+    avatar,
+    createdAt,
+    updatedAt,
+  })
 }
 
 export default function CreateTweetModal(props) {
@@ -26,9 +43,6 @@ export default function CreateTweetModal(props) {
       avatar: {
         uri: image.uri,
       },
-      comments: 0,
-      retweets: 0,
-      hearts: 0,
       createdAt: firebase.database.ServerValue.TIMESTAMP,
       updatedAt: firebase.database.ServerValue.TIMESTAMP,
     }
