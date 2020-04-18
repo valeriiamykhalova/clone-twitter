@@ -12,4 +12,4 @@ export const resources = {
 
 export const pages = {}
 
-export const menuItems = [Library.menuGroup]
+export const menuItems = [Library.resources.Users, Library.resources.Tweets]

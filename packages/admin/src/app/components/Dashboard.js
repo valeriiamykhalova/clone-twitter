@@ -12,7 +12,7 @@ import CardHeader from '@material-ui/core/CardHeader'
 export default function Dashboard() {
   return (
     <Card>
-      <CardHeader title="Welcome to the administration" />
+      <CardHeader title="Welcome to the administration of Twitter app" />
     </Card>
   )
 }
