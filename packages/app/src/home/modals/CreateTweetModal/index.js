@@ -9,6 +9,7 @@ import useUser from '@/app/user/useUser'
 const createTweet = ({
   firstName,
   lastName,
+  username,
   content,
   avatar,
   createdAt,
@@ -23,6 +24,7 @@ const createTweet = ({
     id: tweetRef.key,
     firstName,
     lastName,
+    username,
     content,
     avatar,
     createdAt,
@@ -32,13 +34,14 @@ const createTweet = ({
 
 export default function CreateTweetModal(props) {
   const [text, setText] = useState('')
-  const { firstName, lastName, image } = useUser()
+  const { firstName, lastName, username, image } = useUser()
   const theme = useTheme()
 
   function onPressCreateTweet() {
     const tweetData = {
       firstName,
       lastName,
+      username,
       content: text,
       avatar: {
         uri: image.uri,

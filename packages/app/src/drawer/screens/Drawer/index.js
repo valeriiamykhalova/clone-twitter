@@ -43,7 +43,7 @@ export default function DrawerContent(props) {
             {user.firstName} {user.lastName}
           </Title>
 
-          <Caption style={styles.caption}>@emerell</Caption>
+          <Caption style={styles.caption}>{`@${user.username}`}</Caption>
 
           <View style={styles.row}>
             <View style={styles.section}>

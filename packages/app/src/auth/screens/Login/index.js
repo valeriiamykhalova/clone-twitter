@@ -4,6 +4,7 @@ import FacebookButton from '../../components/FacebookButton'
 import styles from './styles'
 import * as Facebook from 'expo-facebook'
 import * as firebase from 'firebase'
+import humps from 'humps'
 
 const FB_APP_ID = '2646921238962818'
 
@@ -16,10 +17,13 @@ const authenticate = token => {
 const createUser = (uid, data) => {
   const fbURI = `https://graph.facebook.com/${data.id}/picture?height=400`
 
+  const username = humps.decamelize(`${data.first_name}${data.last_name}`)
+
   const userData = {
     id: uid,
     firstName: data.first_name,
     lastName: data.last_name,
+    username,
     createdAt: firebase.database.ServerValue.TIMESTAMP,
     updatedAt: firebase.database.ServerValue.TIMESTAMP,
     image: {

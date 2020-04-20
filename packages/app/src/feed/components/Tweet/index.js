@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Image, TouchableOpacity } from 'react-native'
+import { View, TouchableOpacity } from 'react-native'
 import PropTypes from 'prop-types'
 import {
   Surface,
@@ -11,6 +11,7 @@ import {
   useTheme,
 } from 'react-native-paper'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
+import moment from 'moment'
 import styles from './styles'
 
 export default function Tweet(props) {
@@ -22,29 +23,29 @@ export default function Tweet(props) {
     props.onPress(props.id)
   }
 
+  const timeTweetted = moment(props.createdAt).fromNow()
+
   return (
     <TouchableRipple onPress={goToTweet}>
       <Surface style={styles.container}>
         <View style={styles.leftColumn}>
-          <Avatar.Image source={{ uri: props.avatar }} size={60} />
+          <Avatar.Image source={props.avatar} size={60} />
         </View>
 
         <View style={styles.rightColumn}>
           <View style={styles.topRow}>
-            <Title>{props.name}</Title>
+            <Title style={styles.title}>
+              {props.firstName} {props.lastName}
+            </Title>
 
-            <Caption style={styles.handle}>{props.handle}</Caption>
+            <Caption style={styles.dot}>{'\u2B24'}</Caption>
 
-            <Caption style={[styles.handle, styles.dot]}>{'\u2B24'}</Caption>
+            <Caption>{timeTweetted}</Caption>
 
-            <Caption>{props.date}</Caption>
+            <Caption style={styles.username}>{`@${props.username}`}</Caption>
           </View>
 
           <Text>{props.content}</Text>
-
-          {props.image ? (
-            <Image source={{ uri: props.image }} style={styles.image} />
-          ) : null}
 
           <View style={styles.bottomRow}>
             <TouchableOpacity hitSlop={{ top: 10, bottom: 10 }}>
@@ -55,9 +56,7 @@ export default function Tweet(props) {
                   color={darkIconColor}
                 />
 
-                <Caption style={styles.iconDescription}>
-                  {props.comments}
-                </Caption>
+                <Caption style={styles.iconDescription} />
               </View>
             </TouchableOpacity>
 
@@ -69,9 +68,7 @@ export default function Tweet(props) {
                   color={darkIconColor}
                 />
 
-                <Caption style={styles.iconDescription}>
-                  {props.retweets}
-                </Caption>
+                <Caption style={styles.iconDescription} />
               </View>
             </TouchableOpacity>
 
@@ -83,7 +80,7 @@ export default function Tweet(props) {
                   color={darkIconColor}
                 />
 
-                <Caption style={styles.iconDescription}>{props.hearts}</Caption>
+                <Caption style={styles.iconDescription} />
               </View>
             </TouchableOpacity>
           </View>
@@ -95,18 +92,13 @@ export default function Tweet(props) {
 
 Tweet.propTypes = {
   onPress: PropTypes.func.isRequired,
-  id: PropTypes.number.isRequired,
-  avatar: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  handle: PropTypes.string.isRequired,
-  date: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  avatar: PropTypes.shape({
+    uri: PropTypes.string.isRequired,
+  }).isRequired,
+  firstName: PropTypes.string.isRequired,
+  lastName: PropTypes.string.isRequired,
+  username: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
-  image: PropTypes.string,
-  comments: PropTypes.number.isRequired,
-  retweets: PropTypes.number.isRequired,
-  hearts: PropTypes.number.isRequired,
-}
-
-Tweet.defaultProps = {
-  image: null,
+  createdAt: PropTypes.number.isRequired,
 }

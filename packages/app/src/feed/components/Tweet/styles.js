@@ -8,7 +8,7 @@ export default StyleSheet.create({
   },
 
   leftColumn: {
-    width: 100,
+    width: 80,
     alignItems: 'center',
   },
 
@@ -18,15 +18,26 @@ export default StyleSheet.create({
 
   topRow: {
     flexDirection: 'row',
-    alignItems: 'baseline',
+    alignItems: 'center',
+    flexWrap: 'wrap',
   },
 
-  handle: {
-    marginRight: 3,
+  title: {
+    fontSize: 16,
+    lineHeight: 16,
   },
 
   dot: {
     fontSize: 3,
+    marginLeft: 3,
+  },
+
+  username: {
+    marginHorizontal: 3,
+  },
+
+  time: {
+    textAlign: 'right',
   },
 
   image: {

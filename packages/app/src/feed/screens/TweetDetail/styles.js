@@ -15,7 +15,7 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
 
-  handle: {
+  username: {
     marginRight: 3,
     lineHeight: 12,
   },

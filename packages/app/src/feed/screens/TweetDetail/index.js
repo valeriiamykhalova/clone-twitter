@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Image, ScrollView } from 'react-native'
+import { View, ScrollView } from 'react-native'
 import { Surface, Title, Caption, Avatar, Subheading } from 'react-native-paper'
 import PropTypes from 'prop-types'
 
@@ -12,24 +12,18 @@ export default function TweetDetail(props) {
     <ScrollView>
       <Surface style={styles.container}>
         <View style={styles.topRow}>
-          <Avatar.Image
-            style={styles.avatar}
-            source={{ uri: tweet.avatar }}
-            size={60}
-          />
+          <Avatar.Image style={styles.avatar} source={tweet.avatar} size={60} />
 
           <View>
-            <Title>{tweet.name}</Title>
+            <Title>
+              {tweet.firstName} {tweet.lastName}
+            </Title>
 
-            <Caption style={styles.handle}>{tweet.handle}</Caption>
+            <Caption style={styles.username}>{`@${tweet.username}`}</Caption>
           </View>
         </View>
 
         <Subheading style={styles.content}>{tweet.content}</Subheading>
-
-        {tweet.image ? (
-          <Image source={{ uri: tweet.image }} style={styles.image} />
-        ) : null}
       </Surface>
     </ScrollView>
   )
@@ -38,11 +32,13 @@ export default function TweetDetail(props) {
 TweetDetail.propTypes = {
   route: PropTypes.shape({
     params: PropTypes.shape({
-      avatar: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      handle: PropTypes.string.isRequired,
+      avatar: PropTypes.shape({
+        uri: PropTypes.string.isRequired,
+      }).isRequired,
+      firstName: PropTypes.string.isRequired,
+      lastName: PropTypes.string.isRequired,
+      username: PropTypes.string.isRequired,
       content: PropTypes.string.isRequired,
-      image: PropTypes.string,
     }),
   }),
 }
