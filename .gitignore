@@ -1,5 +1,4 @@
 **/node_modules/**/*
-packages/appengine/lib/**
 .expo/*
 npm-debug.*
 .DS_Store
@@ -11,6 +10,7 @@ lerna-debug.log
 firebase-debug.log
 Preview.html
 yarn.lock
+temp/**
 **/build/
 .firebase/
 

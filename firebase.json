@@ -1,0 +1,8 @@
+{
+  "database": {
+    "rules": "temp/rules.json"
+  },
+  "functions": {
+    "source": "packages/functions"
+  }
+}

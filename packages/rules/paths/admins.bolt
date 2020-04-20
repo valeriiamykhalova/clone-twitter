@@ -1,0 +1,5 @@
+path /admins {
+  read() { true }
+  write() { false }
+}
+

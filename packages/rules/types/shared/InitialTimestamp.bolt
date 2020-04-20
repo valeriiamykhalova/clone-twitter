@@ -1,0 +1,9 @@
+//
+// InitialTimestamp
+//
+// use it for "modified" field
+//
+
+type InitialTimestamp extends Number {
+  validate() { initial(this, now) }
+}

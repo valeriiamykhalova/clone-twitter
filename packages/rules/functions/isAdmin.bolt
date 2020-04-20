@@ -1,0 +1,7 @@
+//
+// isAdmin
+//
+
+isAdmin() {
+  isSignedIn() && isVerified() && prior(root).admins[auth.uid] == auth.email
+}

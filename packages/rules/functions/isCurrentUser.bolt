@@ -1,0 +1,5 @@
+//
+// isCurrentUser
+//
+
+isCurrentUser(userId) { auth.uid == userId }

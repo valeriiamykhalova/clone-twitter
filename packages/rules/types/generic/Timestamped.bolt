@@ -1,0 +1,10 @@
+/**
+ *
+ * Timestamped generic type
+ *
+ */
+
+type Timestamped<T> extends T {
+  updatedAt: CurrentTimestamp,
+  createdAt: InitialTimestamp
+}

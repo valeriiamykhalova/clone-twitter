@@ -1,0 +1,17 @@
+/**
+ *
+ * User
+ *
+ */
+
+type User {
+  // The parent key of the current location is equal to "id" property
+  validate() { this.id == key() }
+
+  id: String,
+  email: String,
+  firstName: String | Null,
+  lastName: String | Null,
+  facebookId: String | Null,
+  image: File | Null,
+}

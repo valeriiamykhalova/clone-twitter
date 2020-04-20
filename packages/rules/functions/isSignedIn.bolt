@@ -1,0 +1,5 @@
+//
+// isSignedIn
+//
+
+isSignedIn() { auth != null }

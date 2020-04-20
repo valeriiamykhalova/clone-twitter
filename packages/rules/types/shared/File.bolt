@@ -1,0 +1,17 @@
+/**
+ *
+ * File
+ *
+ */
+
+type File {
+  type: FileType
+  uri: String | Null
+  preview: String | Null
+  width: Number | Null
+  height: Number | Null
+}
+
+type FileType {
+  validate() { this == 'file' }
+}

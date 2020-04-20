@@ -1,0 +1,5 @@
+//
+// isOwner
+//
+
+isOwner(createdBy) { createdBy == auth.uid }

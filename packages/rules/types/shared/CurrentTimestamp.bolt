@@ -1,0 +1,9 @@
+//
+// CurrentTimestamp
+//
+// use it for "created" field
+//
+
+type CurrentTimestamp extends Number {
+  validate() { this == now }
+}

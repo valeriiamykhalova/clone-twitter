@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "rules:build": "gulp --gulpfile scripts/buildRules.js default",
+    "rules:deploy:dev": "npm run rules:build && firebase use dev && firebase deploy --only database",
     "precommit": "lint-staged"
   },
   "lint-staged": {
@@ -24,6 +25,10 @@
     "eslint-plugin-prettier": "3.1.0",
     "eslint-plugin-react": "7.12.4",
     "eslint-plugin-react-native": "3.6.0",
+    "gulp": "4.0.2",
+    "gulp-cached": "1.1.1",
+    "gulp-concat": "2.6.1",
+    "gulp-firebase-bolt-compiler": "0.1.0",
     "husky": "^0.14.3",
     "lerna": "3.16.4",
     "lint-staged": "^8.2.1",
