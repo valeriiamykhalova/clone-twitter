@@ -24,12 +24,16 @@ const createUser = (uid, data) => {
     firstName: data.first_name,
     lastName: data.last_name,
     username,
+    email: data.email,
     createdAt: firebase.database.ServerValue.TIMESTAMP,
     updatedAt: firebase.database.ServerValue.TIMESTAMP,
     image: {
       uri: fbURI,
+      type: 'file',
     },
   }
+
+  console.log(userData)
 
   firebase
     .database()
@@ -50,7 +54,7 @@ export default function Login() {
     )
 
     if (type === 'success') {
-      const fields = ['id', 'first_name', 'last_name']
+      const fields = ['id', 'first_name', 'last_name', 'email']
       const response = await fetch(
         `https://graph.facebook.com/me?fields=${fields.toString()}&access_token=${token}`
       )

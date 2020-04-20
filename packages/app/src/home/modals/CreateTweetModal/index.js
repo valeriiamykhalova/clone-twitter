@@ -7,6 +7,7 @@ import styles from './styles'
 import useUser from '@/app/user/useUser'
 
 const createTweet = ({
+  createdBy,
   firstName,
   lastName,
   username,
@@ -22,6 +23,7 @@ const createTweet = ({
 
   return tweetRef.set({
     id: tweetRef.key,
+    createdBy,
     firstName,
     lastName,
     username,
@@ -34,17 +36,19 @@ const createTweet = ({
 
 export default function CreateTweetModal(props) {
   const [text, setText] = useState('')
-  const { firstName, lastName, username, image } = useUser()
+  const { firstName, lastName, username, image, id } = useUser()
   const theme = useTheme()
 
   function onPressCreateTweet() {
     const tweetData = {
+      createdBy: id,
       firstName,
       lastName,
       username,
       content: text,
       avatar: {
         uri: image.uri,
+        type: 'file',
       },
       createdAt: firebase.database.ServerValue.TIMESTAMP,
       updatedAt: firebase.database.ServerValue.TIMESTAMP,

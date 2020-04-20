@@ -12,6 +12,6 @@ type User {
   email: String,
   firstName: String | Null,
   lastName: String | Null,
-  facebookId: String | Null,
+  username: String | Null,
   image: File | Null,
 }

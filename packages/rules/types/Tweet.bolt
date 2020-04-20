@@ -1,0 +1,11 @@
+type Tweet {
+  validate() { this.id == key() }
+
+  id: String,
+  createdBy: String,
+  firstName: String | Null,
+  lastName: String | Null,
+  username: String | Null,
+  content: String
+  avatar: File | Null,
+}

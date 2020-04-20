@@ -1,0 +1,9 @@
+path /tweets {
+  index() { ['createdAt'] }
+
+  read() { isSignedIn() }
+
+  /{tweetId} is Timestamped<Tweet> {
+    write() { isOwner(this.createdBy) }
+  }
+}

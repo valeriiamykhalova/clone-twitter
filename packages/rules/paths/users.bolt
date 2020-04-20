@@ -2,7 +2,7 @@ path /users {
   index() { ['email', 'createdAt'] }
 
   read() { isAdmin() }
-  write() { isAdmin(userId) }
+  write() { isAdmin() }
 
   /{userId} is Timestamped<User> {
     read() { isCurrentUser(userId) }
