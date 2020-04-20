@@ -1,8 +1,10 @@
 import React from 'react'
 
-import { Edit, SimpleForm, TextInput } from 'react-admin'
+import { Edit, SimpleForm, TextInput, required, email } from 'react-admin'
 
 import { requiredFieldValidation } from '@/shared/validators'
+
+const emailValidation = [required(), email()]
 
 export default function UsersEdit(props) {
   return (
@@ -18,6 +20,14 @@ export default function UsersEdit(props) {
           <TextInput
             source="lastName"
             label="Last name"
+            validate={requiredFieldValidation}
+          />
+
+          <TextInput source="email" label="Email" validate={emailValidation} />
+
+          <TextInput
+            source="username"
+            label="Username"
             validate={requiredFieldValidation}
           />
         </div>
