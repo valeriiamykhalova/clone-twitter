@@ -41,8 +41,6 @@ export default function Tweet(props) {
             <Caption style={styles.dot}>{'\u2B24'}</Caption>
 
             <Caption>{timeTweetted}</Caption>
-
-            <Caption style={styles.username}>{`@${props.username}`}</Caption>
           </View>
 
           <Text>{props.content}</Text>

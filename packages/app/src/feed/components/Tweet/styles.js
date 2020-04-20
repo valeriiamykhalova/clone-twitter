@@ -29,7 +29,7 @@ export default StyleSheet.create({
 
   dot: {
     fontSize: 3,
-    marginLeft: 3,
+    marginHorizontal: 3,
   },
 
   username: {

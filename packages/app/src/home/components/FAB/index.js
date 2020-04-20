@@ -1,5 +1,5 @@
 import React from 'react'
-import { useTheme, Portal, FAB as ReactPaperFAB } from 'react-native-paper'
+import { useTheme, FAB as ReactPaperFAB } from 'react-native-paper'
 import { useIsFocused } from '@react-navigation/native'
 import PropTypes from 'prop-types'
 import styles from './styles'
@@ -32,20 +32,18 @@ export default function FAB(props) {
   }
 
   return (
-    <Portal>
-      <ReactPaperFAB
-        visible={isFocused}
-        icon={icon}
-        style={styles.icon}
-        color="white"
-        theme={{
-          colors: {
-            accent: theme.colors.primary,
-          },
-        }}
-        onPress={showModal}
-      />
-    </Portal>
+    <ReactPaperFAB
+      visible={isFocused}
+      icon={icon}
+      style={styles.icon}
+      color="white"
+      theme={{
+        colors: {
+          accent: theme.colors.primary,
+        },
+      }}
+      onPress={showModal}
+    />
   )
 }
 
