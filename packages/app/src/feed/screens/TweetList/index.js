@@ -36,6 +36,10 @@ export default function TweetList(props) {
       props.navigation.push('Details', {
         ...tweet,
       }),
+    openModal: () =>
+      props.navigation.navigate('ProfileModal', {
+        author: tweet.createdBy,
+      }),
   }))
 
   function Seperator() {
@@ -59,6 +63,7 @@ export default function TweetList(props) {
 TweetList.propTypes = {
   navigation: PropTypes.shape({
     push: PropTypes.function,
+    navigate: PropTypes.function,
   }).isRequired,
 }
 

@@ -3,7 +3,7 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import { useTheme } from 'react-native-paper'
 import NotificationsNavigator from '@/notifications/navigators/NotificationsNavigator'
 import Message from '@/messages/screens/Messages'
-import FeedNavigator from '@/feed/navigators/FeedNavigator'
+import RootFeedNavigator from '@/feed/navigators/RootFeedNavigator'
 import FAB from '../components/FAB'
 
 const Tab = createMaterialBottomTabNavigator()
@@ -26,7 +26,7 @@ export default function TabNavigator(props) {
       >
         <Tab.Screen
           name="Feed"
-          component={FeedNavigator}
+          component={RootFeedNavigator}
           options={{
             tabBarIcon: 'home-account',
             tabBarColor,

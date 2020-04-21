@@ -29,7 +29,9 @@ export default function Tweet(props) {
     <TouchableRipple onPress={goToTweet}>
       <Surface style={styles.container}>
         <View style={styles.leftColumn}>
-          <Avatar.Image source={props.avatar} size={60} />
+          <TouchableRipple onPress={props.openModal}>
+            <Avatar.Image source={props.avatar} size={60} />
+          </TouchableRipple>
         </View>
 
         <View style={styles.rightColumn}>
@@ -90,6 +92,7 @@ export default function Tweet(props) {
 
 Tweet.propTypes = {
   onPress: PropTypes.func.isRequired,
+  openModal: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
   avatar: PropTypes.shape({
     uri: PropTypes.string.isRequired,
