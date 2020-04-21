@@ -6,7 +6,7 @@
 
 import ActionTypes from '../ActionTypes'
 
-export default function(state = {}, action) {
+export default function (state = {}, action) {
   switch (action.type) {
     case ActionTypes.RESOURCES__SET_RESOURCE:
       return {

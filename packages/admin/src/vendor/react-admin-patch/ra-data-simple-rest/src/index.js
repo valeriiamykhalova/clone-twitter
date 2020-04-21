@@ -168,13 +168,7 @@ export default (apiUrl, httpClient = fetchUtils.fetchJson) => {
 
         return {
           data: json,
-          total: parseInt(
-            headers
-              .get('content-range')
-              .split('/')
-              .pop(),
-            10
-          ),
+          total: parseInt(headers.get('content-range').split('/').pop(), 10),
         }
       case CREATE:
         return { data: { ...params.data, id: json.id } }

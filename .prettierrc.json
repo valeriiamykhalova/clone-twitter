@@ -5,24 +5,16 @@
   "trailingComma": "es5",
   "bracketSpacing": true,
   "jsxBracketSameLine": false,
-  "parser": "babylon",
+  "arrowParens": "avoid",
+  "tabWidth": 2,
   "overrides": [
     {
-      "files": ".prettierrc",
+      "files": ".@(firebaserc|babelrc)",
       "options": { "parser": "json" }
     },
     {
-      "files": "*.md",
-      "options": { "parser": "markdown" }
-    },
-    {
-      "files": "*.json",
+      "files": "*.sublime-project",
       "options": { "parser": "json" }
-    },
-    {
-      "files": "*.css",
-      "options": { "parser": "css" }
     }
-  ],
-  "tabWidth": 2
+  ]
 }

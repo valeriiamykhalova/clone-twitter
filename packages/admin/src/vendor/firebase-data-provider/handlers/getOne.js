@@ -6,7 +6,7 @@
 
 import getResourceDataAsync from '../getResourceDataAsync'
 
-export default async function(resource, params) {
+export default async function (resource, params) {
   if (params && params.id) {
     const data = await getResourceDataAsync({
       resource: resource.name,

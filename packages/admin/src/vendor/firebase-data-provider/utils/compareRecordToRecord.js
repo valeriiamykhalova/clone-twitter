@@ -11,7 +11,7 @@ export default function compareRecordToRecord(object, base) {
   function changes(object, base) {
     const properties = uniq([...keys(object), ...keys(base)])
 
-    return properties.reduce(function(result, property) {
+    return properties.reduce(function (result, property) {
       const newValue = object[property]
       const oldValue = base[property]
 

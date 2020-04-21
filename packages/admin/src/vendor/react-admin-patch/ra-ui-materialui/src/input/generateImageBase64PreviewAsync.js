@@ -6,7 +6,7 @@ export default function generateImageBase64PreviewAsync(url, previewWidth) {
   return new Promise(resolve => {
     let img = new Image()
 
-    img.onload = function() {
+    img.onload = function () {
       const resizeFactor = previewWidth / this.width
       const previewHeight = this.height * resizeFactor
 

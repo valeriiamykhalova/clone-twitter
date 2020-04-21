@@ -10,7 +10,7 @@ import runUpdates from './runUpdates'
 import store from './redux/store'
 import { clearDiff } from './redux/actionCreators'
 
-export default async function(actions, resources, DataActions) {
+export default async function (actions, resources, DataActions) {
   try {
     const actionsToHandle = Array.isArray(actions) ? actions : [actions]
 

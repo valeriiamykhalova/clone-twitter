@@ -130,7 +130,7 @@ const firebaseConfig = {
   persistence: true,
 }
 
-export default function(_resources) {
+export default function (_resources) {
   // FIX_ME!!!
   // hack to make firebase-data-provider work
   const resources = Object.values(_resources).reduce((out, item) => {
@@ -166,7 +166,7 @@ export default function(_resources) {
 
   const privateDataProvider = createPrivateDataProvider()
 
-  return async function(type, resourceName, params) {
+  return async function (type, resourceName, params) {
     const resource =
       resources[resourceName] || resources[resourceName.split('#')[0]]
 

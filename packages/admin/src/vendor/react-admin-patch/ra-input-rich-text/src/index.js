@@ -14,7 +14,7 @@ import { uploadFile } from 'firebase-data-provider'
 import styles from './styles'
 
 // Do not sanitize image urls
-Quill.import('formats/image').sanitize = function(url) {
+Quill.import('formats/image').sanitize = function (url) {
   return url // No sanitization
 }
 
@@ -37,13 +37,13 @@ function lineBreakMatcher() {
   return newDelta
 }
 
-Break.prototype.insertInto = function(parent, ref) {
+Break.prototype.insertInto = function (parent, ref) {
   Embed.prototype.insertInto.call(this, parent, ref)
 }
-Break.prototype.length = function() {
+Break.prototype.length = function () {
   return 1
 }
-Break.prototype.value = function() {
+Break.prototype.value = function () {
   return '\n'
 }
 
@@ -115,11 +115,11 @@ class RichTextInput extends Component {
           bindings: {
             handleEnter: {
               key: 13,
-              handler: function(range, context) {
+              handler: function (range, context) {
                 if (range.length > 0) {
                   this.quill.scroll.deleteAt(range.index, range.length) // So we do not trigger text-change
                 }
-                let lineFormats = Object.keys(context.format).reduce(function(
+                let lineFormats = Object.keys(context.format).reduce(function (
                   lineFormats,
                   format
                 ) {
@@ -173,7 +173,7 @@ class RichTextInput extends Component {
             linebreak: {
               key: 13,
               shiftKey: true,
-              handler: function(
+              handler: function (
                 range
                 // , context
               ) {

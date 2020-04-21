@@ -201,14 +201,14 @@ export class SelectArrayInput extends Component {
 
       switch (dataStructure) {
         case DataStructures.REFERENCE_BOOLEAN_MAP:
-          return value.reduce(function(out, id) {
+          return value.reduce(function (out, id) {
             out[id] = true
 
             return out
           }, {})
 
         case DataStructures.REFERENCE_NUMBER_MAP:
-          return value.reduce(function(out, id, index) {
+          return value.reduce(function (out, id, index) {
             out[id] = index + 1
 
             return out

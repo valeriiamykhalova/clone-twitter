@@ -34,10 +34,7 @@ export default async function runUpdates({
   }
 
   try {
-    await firebase
-      .database()
-      .ref()
-      .update(databaseDiff)
+    await firebase.database().ref().update(databaseDiff)
   } catch (err) {
     await Promise.all(uploadedFiles.map(uri => removeFile(uri)))
 

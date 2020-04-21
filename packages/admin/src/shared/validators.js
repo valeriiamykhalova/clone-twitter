@@ -12,7 +12,7 @@ export { required } from 'react-admin'
 export const requiredFieldValidation = [required()]
 
 export function isBefore(compareToDateField) {
-  return function(value, formData) {
+  return function (value, formData) {
     const compareToDate = formData[compareToDateField]
 
     return value && compareToDate && !moment(value).isBefore(compareToDate)
@@ -22,7 +22,7 @@ export function isBefore(compareToDateField) {
 }
 
 export function isAfter(compareToDateField) {
-  return function(value, formData) {
+  return function (value, formData) {
     const compareToDate = formData[compareToDateField]
 
     return value && compareToDate && !moment(value).isAfter(compareToDate)
@@ -32,19 +32,19 @@ export function isAfter(compareToDateField) {
 }
 
 export function minValue(min, message = 'Too small') {
-  return function(value) {
+  return function (value) {
     return value && value < min ? message : undefined
   }
 }
 
 export function maxLength(max, message = 'Too short') {
-  return function(value) {
+  return function (value) {
     return value && value.length > max ? message : undefined
   }
 }
 
 export function number(message = 'Must be a number') {
-  return function(value) {
+  return function (value) {
     return value && isNaN(Number(value)) ? message : undefined
   }
 }

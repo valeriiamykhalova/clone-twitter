@@ -4,7 +4,7 @@ const stagingConfig = require('./staging.json')
 const productionConfig = require('./production.json')
 const mergeDeep = require('./utils/mergeDeep')
 
-module.exports = function(environment) {
+module.exports = function (environment) {
   defaultConfig.ENVIRONMENT = environment || 'development'
 
   let envConfig

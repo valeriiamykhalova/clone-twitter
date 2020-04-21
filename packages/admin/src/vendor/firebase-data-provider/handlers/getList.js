@@ -8,7 +8,7 @@ import { isArray, isObject, intersection } from 'lodash'
 import arraySort from 'array-sort'
 import getResourceDataAsync from '../getResourceDataAsync'
 
-export default async function(resource, params) {
+export default async function (resource, params) {
   const resourceData = await getResourceDataAsync({ resource: resource.name })
 
   if (!params.pagination) {

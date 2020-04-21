@@ -12,7 +12,7 @@ import { merge, cloneDeep, isEmpty } from 'lodash'
 import isRecordReassigned from './isRecordReassigned'
 import getRecordPreviousId from './getRecordPreviousId'
 
-export default async function(resources) {
+export default async function (resources) {
   const updates = {
     databaseDiff: {},
     filesToAdd: {},

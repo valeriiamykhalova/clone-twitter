@@ -42,7 +42,7 @@ export default function generateFlattenData({
   function changes(newRecord, oldRecord, reference = '') {
     const properties = uniq([...keys(newRecord), ...keys(oldRecord)])
 
-    properties.forEach(function(property) {
+    properties.forEach(function (property) {
       const newValue = newRecord ? newRecord[property] : undefined
       const oldValue = oldRecord ? oldRecord[property] : undefined
 

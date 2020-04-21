@@ -6,7 +6,10 @@
   "scripts": {
     "rules:build": "gulp --gulpfile scripts/buildRules.js default",
     "rules:deploy:dev": "npm run rules:build && firebase use dev && firebase deploy --only database",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "app": "cd packages/app && npm start",
+    "admin": "cd packages/admin && npm start",
+    "prettify": "prettier --write \"**/*.{js,json,md,yml,yaml,firebaserc,babelrc,sublime-project}\""
   },
   "lint-staged": {
     "*.js": [
@@ -32,7 +35,7 @@
     "husky": "^0.14.3",
     "lerna": "3.16.4",
     "lint-staged": "^8.2.1",
-    "prettier": "1.19.1",
+    "prettier": "^2.0.4",
     "pretty-quick": "1.11.1"
   }
 }

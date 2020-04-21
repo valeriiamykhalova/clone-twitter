@@ -16,10 +16,7 @@ export default async function removeFile(uri) {
     )
 
     try {
-      await storage
-        .ref()
-        .child(fileStoragePath)
-        .delete()
+      await storage.ref().child(fileStoragePath).delete()
     } catch (err) {
       if (err.code !== 'storage/object-not-found') {
         return Promise.reject(err)

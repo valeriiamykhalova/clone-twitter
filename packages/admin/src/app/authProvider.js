@@ -73,10 +73,7 @@ export default async (type, params) => {
         }
       }
 
-      const adminsSnap = await firebase
-        .database()
-        .ref('/admins')
-        .once('value')
+      const adminsSnap = await firebase.database().ref('/admins').once('value')
 
       if (adminsSnap.exists()) {
         const admins = adminsSnap.val()

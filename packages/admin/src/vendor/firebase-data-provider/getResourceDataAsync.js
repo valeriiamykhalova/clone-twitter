@@ -31,22 +31,22 @@ export default async function getResourceDataAsync({ resource, id, watch }) {
       // Attach listener to update fetched resource data on change
       setTimeout(() => {
         if (watch) {
-          ref.on('value', function(snap) {
+          ref.on('value', function (snap) {
             store.dispatch(setResouce(resource, snap.val() || {}))
           })
         } else {
           ref
             .orderByChild('createdAt')
             .startAt(Date.now())
-            .on('child_added', function(snap) {
+            .on('child_added', function (snap) {
               store.dispatch(setResouceItem(resource, snap.key, snap.val()))
             })
 
-          ref.on('child_removed', function(snap) {
+          ref.on('child_removed', function (snap) {
             store.dispatch(unsetResouceItem(resource, snap.key))
           })
 
-          ref.on('child_changed', function(snap) {
+          ref.on('child_changed', function (snap) {
             store.dispatch(setResouceItem(resource, snap.key, snap.val()))
           })
         }
@@ -62,11 +62,7 @@ export default async function getResourceDataAsync({ resource, id, watch }) {
   // Get resource record by ID
   // Resource was not fetched, fetching only one requested record by ID
   if (!listeners[resource]) {
-    const snap = await firebase
-      .database()
-      .ref(resource)
-      .child(id)
-      .once('value')
+    const snap = await firebase.database().ref(resource).child(id).once('value')
 
     const recordData = snap.val()
 

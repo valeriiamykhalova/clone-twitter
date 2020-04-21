@@ -35,11 +35,7 @@ const createUser = (uid, data) => {
 
   console.log(userData)
 
-  firebase
-    .database()
-    .ref('users')
-    .child(uid)
-    .update(userData)
+  firebase.database().ref('users').child(uid).update(userData)
 }
 
 export default function Login() {

@@ -19,7 +19,7 @@ export default function compareDiffToDiff(diff, baseDiff) {
   const conflicts = {}
 
   function changes(object, base, parentPath = []) {
-    Object.keys(object).forEach(function(key) {
+    Object.keys(object).forEach(function (key) {
       const value = object[key]
 
       if (!isEqual(value, base[key])) {

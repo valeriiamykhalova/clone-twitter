@@ -7,7 +7,7 @@
 import ActionTypes from '../ActionTypes'
 import { merge } from 'lodash'
 
-export default function(state = {}, action) {
+export default function (state = {}, action) {
   switch (action.type) {
     case ActionTypes.REASSIGNS__DECLARE:
       return merge({}, state, action.payload)

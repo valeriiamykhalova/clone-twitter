@@ -7,7 +7,7 @@
 import { connect } from 'react-redux'
 import { storeKey } from './Provider'
 
-export default function(
+export default function (
   mapStateToProps,
   mapDispatchToProps,
   mergeProps,

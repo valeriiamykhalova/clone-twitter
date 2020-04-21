@@ -491,7 +491,7 @@ export class AutocompleteManyInput extends React.Component {
           )
 
           return this.lastFormattedValue.length
-            ? this.lastFormattedValue.reduce(function(out, id, index) {
+            ? this.lastFormattedValue.reduce(function (out, id, index) {
                 out[id] = index + 1
 
                 return out

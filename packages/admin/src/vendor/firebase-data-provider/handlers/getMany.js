@@ -6,7 +6,7 @@
 
 import getResourceDataAsync from '../getResourceDataAsync'
 
-export default async function(resource, params) {
+export default async function (resource, params) {
   if (!params.ids) {
     console.error('Unexpected parameters: ', params)
 

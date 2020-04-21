@@ -16,10 +16,7 @@ const createTweet = ({
   createdAt,
   updatedAt,
 }) => {
-  const tweetRef = firebase
-    .database()
-    .ref('/tweets')
-    .push()
+  const tweetRef = firebase.database().ref('/tweets').push()
 
   return tweetRef.set({
     id: tweetRef.key,

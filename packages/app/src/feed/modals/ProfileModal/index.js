@@ -8,10 +8,7 @@ import * as firebase from 'firebase'
 import moment from 'moment'
 
 async function getAuthor(authorId) {
-  const res = await firebase
-    .database()
-    .ref('users')
-    .once('value')
+  const res = await firebase.database().ref('users').once('value')
 
   const user = Object.values(res.val()).find(user => authorId === user.id)
 
