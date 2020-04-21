@@ -7,6 +7,7 @@ import {
   EditButton,
   DeleteButton,
   SearchInput,
+  EmailField,
 } from 'react-admin'
 import { Filter, ImageField } from 'react-admin-patch'
 
@@ -30,6 +31,8 @@ export default function UsersList(props) {
           title="Photo"
           small
         />
+
+        <EmailField source="email" label="Email" />
 
         <TextField source="firstName" label="First name" />
 

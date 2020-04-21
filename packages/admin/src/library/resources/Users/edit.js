@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { Edit, SimpleForm, TextInput, required, email } from 'react-admin'
+import { ImageField } from 'react-admin-patch'
 
 import { requiredFieldValidation } from '@/shared/validators'
 
@@ -10,27 +11,27 @@ export default function UsersEdit(props) {
   return (
     <Edit {...props} title="Edit User">
       <SimpleForm>
-        <div>
-          <TextInput
-            source="firstName"
-            label="First name"
-            validate={requiredFieldValidation}
-          />
+        <ImageField source="image.uri" label="Photo" title="Photo" />
 
-          <TextInput
-            source="lastName"
-            label="Last name"
-            validate={requiredFieldValidation}
-          />
+        <TextInput
+          source="firstName"
+          label="First name"
+          validate={requiredFieldValidation}
+        />
 
-          <TextInput source="email" label="Email" validate={emailValidation} />
+        <TextInput
+          source="lastName"
+          label="Last name"
+          validate={requiredFieldValidation}
+        />
 
-          <TextInput
-            source="username"
-            label="Username"
-            validate={requiredFieldValidation}
-          />
-        </div>
+        <TextInput source="email" label="Email" validate={emailValidation} />
+
+        <TextInput
+          source="username"
+          label="Username"
+          validate={requiredFieldValidation}
+        />
       </SimpleForm>
     </Edit>
   )
