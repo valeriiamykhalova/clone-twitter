@@ -48,7 +48,7 @@ export default function DrawerContent(props) {
           <View style={styles.row}>
             <View style={styles.section}>
               <Paragraph style={[styles.paragraph, styles.caption]}>
-                202
+                0
               </Paragraph>
 
               <Caption style={styles.caption}>Following</Caption>
@@ -56,7 +56,7 @@ export default function DrawerContent(props) {
 
             <View style={styles.section}>
               <Paragraph style={[styles.paragraph, styles.caption]}>
-                159
+                0
               </Paragraph>
 
               <Caption style={styles.caption}>Followers</Caption>

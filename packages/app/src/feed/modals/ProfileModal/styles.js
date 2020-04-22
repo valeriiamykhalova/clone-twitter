@@ -4,7 +4,7 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    marginVertical: 100,
+    marginTop: 100,
   },
 
   scrollViewContent: {
@@ -36,5 +36,14 @@ export default StyleSheet.create({
 
   icon: {
     paddingRight: 5,
+  },
+
+  button: {
+    marginTop: 'auto',
+    marginBottom: 'auto',
+  },
+
+  label: {
+    color: 'white',
   },
 })

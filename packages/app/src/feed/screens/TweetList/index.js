@@ -36,7 +36,7 @@ export default function TweetList(props) {
       props.navigation.push('Details', {
         ...tweet,
       }),
-    openModal: () =>
+    onAvatarPress: () =>
       props.navigation.navigate('ProfileModal', {
         author: tweet.createdBy,
       }),

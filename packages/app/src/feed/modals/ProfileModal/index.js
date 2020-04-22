@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { ScrollView, View, Image } from 'react-native'
-import { Avatar, Title, Caption, useTheme } from 'react-native-paper'
+import { Avatar, Title, Caption, useTheme, Button } from 'react-native-paper'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import styles from './styles'
 import * as firebase from 'firebase'
 import moment from 'moment'
 
 async function getAuthor(authorId) {
-  const res = await firebase.database().ref('users').once('value')
+  const res = await firebase
+    .database()
+    .ref('users')
+    .child(authorId)
+    .once('value')
 
-  const user = Object.values(res.val()).find(user => authorId === user.id)
-
-  return user
+  return res.val()
 }
 
 export default function ProfileModal(props) {
@@ -25,8 +27,9 @@ export default function ProfileModal(props) {
     getAuthor(authorId).then(setAuthor)
   }, [])
 
-  const timeTweetted = author && moment(author.createdAt).format('LL')
+  const userCreatiionTime = author && moment(author.createdAt).format('LL')
   const darkIconColor = theme.dark ? theme.colors.placeholder : null
+  const backgroundColor = theme.dark ? null : theme.colors.surface
 
   return (
     <ScrollView contentContainerStyle={styles.scrollViewContent}>
@@ -38,7 +41,7 @@ export default function ProfileModal(props) {
             blurRadius={2}
           />
 
-          <View style={styles.container}>
+          <View style={[styles.container, { backgroundColor }]}>
             <Avatar.Image source={author.image} size={150} />
 
             <Title style={styles.title}>
@@ -56,9 +59,16 @@ export default function ProfileModal(props) {
               />
 
               <Caption style={styles.caption}>
-                on Twitter from {timeTweetted}
+                on Twitter from {userCreatiionTime}
               </Caption>
             </View>
+            <Button
+              style={styles.button}
+              mode="contained"
+              labelStyle={styles.label}
+            >
+              Follow
+            </Button>
           </View>
         </>
       )}

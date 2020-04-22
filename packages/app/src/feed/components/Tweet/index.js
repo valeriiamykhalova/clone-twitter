@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, TouchableOpacity } from 'react-native'
+import { View, TouchableOpacity, TouchableWithoutFeedback } from 'react-native'
 import PropTypes from 'prop-types'
 import {
   Surface,
@@ -20,7 +20,7 @@ export default function Tweet(props) {
   const darkIconColor = theme.dark ? theme.colors.placeholder : null
 
   function goToTweet() {
-    props.onPress(props.id)
+    props.onPress()
   }
 
   const timeTweetted = moment(props.createdAt).fromNow()
@@ -29,9 +29,11 @@ export default function Tweet(props) {
     <TouchableRipple onPress={goToTweet}>
       <Surface style={styles.container}>
         <View style={styles.leftColumn}>
-          <TouchableRipple onPress={props.openModal}>
-            <Avatar.Image source={props.avatar} size={60} />
-          </TouchableRipple>
+          <TouchableWithoutFeedback onPress={props.onAvatarPress}>
+            <View>
+              <Avatar.Image source={props.avatar} size={60} />
+            </View>
+          </TouchableWithoutFeedback>
         </View>
 
         <View style={styles.rightColumn}>
@@ -92,7 +94,7 @@ export default function Tweet(props) {
 
 Tweet.propTypes = {
   onPress: PropTypes.func.isRequired,
-  openModal: PropTypes.func.isRequired,
+  onAvatarPress: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
   avatar: PropTypes.shape({
     uri: PropTypes.string.isRequired,
