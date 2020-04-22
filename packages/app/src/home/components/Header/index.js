@@ -3,7 +3,6 @@ import useUser from '@/app/user/useUser'
 import PropTypes from 'prop-types'
 import { TouchableOpacity } from 'react-native'
 import { Appbar, Avatar, useTheme } from 'react-native-paper'
-import { MaterialCommunityIcons } from '@expo/vector-icons'
 import styles from './styles'
 
 export default function Header({ scene, navigation }) {
@@ -19,25 +18,16 @@ export default function Header({ scene, navigation }) {
     navigation.openDrawer()
   }
 
+  if (title === 'Feed') {
+    return
+  }
+
   return (
     <Appbar.Header theme={{ colors: { primary: theme.colors.surface } }}>
       <TouchableOpacity style={styles.touchable} onPress={onPress}>
         <Avatar.Image size={40} source={image} />
       </TouchableOpacity>
-      <Appbar.Content
-        title={
-          title === 'Feed' ? (
-            <MaterialCommunityIcons
-              name="twitter"
-              size={40}
-              color={theme.colors.primary}
-            />
-          ) : (
-            title
-          )
-        }
-        titleStyle={styles.title}
-      />
+      <Appbar.Content title={title} titleStyle={styles.title} />
     </Appbar.Header>
   )
 }

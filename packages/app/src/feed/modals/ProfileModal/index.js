@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import { ScrollView, View, Image } from 'react-native'
+import { View, Image } from 'react-native'
 import { Avatar, Title, Caption, useTheme, Button } from 'react-native-paper'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import styles from './styles'
@@ -32,7 +32,7 @@ export default function ProfileModal(props) {
   const backgroundColor = theme.dark ? null : theme.colors.surface
 
   return (
-    <ScrollView contentContainerStyle={styles.scrollViewContent}>
+    <View style={styles.scrollViewContent}>
       {author && (
         <>
           <Image
@@ -72,7 +72,7 @@ export default function ProfileModal(props) {
           </View>
         </>
       )}
-    </ScrollView>
+    </View>
   )
 }
 
