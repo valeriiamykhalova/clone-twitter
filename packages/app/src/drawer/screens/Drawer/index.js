@@ -39,10 +39,10 @@ export default function DrawerContent(props) {
 
   const theme = useTheme()
 
-  const userFollowersRef = firebase.database().ref('userFollowers')
-  const userFollowingRef = firebase.database().ref('userFollowing')
-
   useEffect(() => {
+    const userFollowersRef = firebase.database().ref('userFollowers')
+    const userFollowingRef = firebase.database().ref('userFollowing')
+
     userFollowersRef.child(user.id).on('value', snapshot => {
       const followers = getUsersCount(snapshot.val())
 

@@ -53,6 +53,8 @@ export default function ProfileModal(props) {
   const user = useUser()
   const theme = useTheme()
 
+  const isUserProfile = user.id === authorId
+
   useEffect(() => {
     getAuthor(authorId).then(setAuthor)
     getIsFollowing(user.id, authorId).then(setIsFollowing)
@@ -104,7 +106,7 @@ export default function ProfileModal(props) {
               </Caption>
             </View>
 
-            {isFollowing ? (
+            {isFollowing && !isUserProfile && (
               <Button
                 style={styles.button}
                 mode="outlined"
@@ -112,7 +114,8 @@ export default function ProfileModal(props) {
               >
                 Unfollow
               </Button>
-            ) : (
+            )}
+            {!isFollowing && !isUserProfile && (
               <Button
                 style={styles.button}
                 mode="contained"
