@@ -43,7 +43,7 @@ export default StyleSheet.create({
     marginBottom: 'auto',
   },
 
-  label: {
+  labelContained: {
     color: 'white',
   },
 })

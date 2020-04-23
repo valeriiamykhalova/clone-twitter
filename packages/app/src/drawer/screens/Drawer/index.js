@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { View } from 'react-native'
 import ThemeContext from '@/app/theme/ThemeContext'
@@ -23,11 +23,38 @@ function logOut() {
   firebase.auth().signOut()
 }
 
+function getUsersCount(users) {
+  if (!users) return 0
+
+  const usersCount = Object.values(users).filter(val => val === true).length
+
+  return usersCount
+}
+
 export default function DrawerContent(props) {
+  const [followersCount, setFollowersCount] = useState(0)
+  const [followingCount, setFollowingCount] = useState(0)
   const user = useUser()
   const { isDarkTheme, setIsDarkTheme } = useContext(ThemeContext)
 
   const theme = useTheme()
+
+  const userFollowersRef = firebase.database().ref('userFollowers')
+  const userFollowingRef = firebase.database().ref('userFollowing')
+
+  useEffect(() => {
+    userFollowersRef.child(user.id).on('value', snapshot => {
+      const followers = getUsersCount(snapshot.val())
+
+      setFollowersCount(followers)
+    })
+
+    userFollowingRef.child(user.id).on('value', snapshot => {
+      const following = getUsersCount(snapshot.val())
+
+      setFollowingCount(following)
+    })
+  }, [])
 
   function toggleTheme() {
     setIsDarkTheme(!isDarkTheme)
@@ -48,7 +75,7 @@ export default function DrawerContent(props) {
           <View style={styles.row}>
             <View style={styles.section}>
               <Paragraph style={[styles.paragraph, styles.caption]}>
-                0
+                {followingCount}
               </Paragraph>
 
               <Caption style={styles.caption}>Following</Caption>
@@ -56,7 +83,7 @@ export default function DrawerContent(props) {
 
             <View style={styles.section}>
               <Paragraph style={[styles.paragraph, styles.caption]}>
-                0
+                {followersCount}
               </Paragraph>
 
               <Caption style={styles.caption}>Followers</Caption>

@@ -8,7 +8,6 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    // backgroundColor: theme.colors.background,
   },
 
   cancelButton: {
@@ -33,12 +32,10 @@ export default StyleSheet.create({
   imageContainer: {
     paddingTop: 13,
     paddingHorizontal: 5,
-    // backgroundColor: theme.colors.background,
   },
 
   input: {
     flex: 1,
-    // backgroundColor: theme.colors.background,
     fontSize: 20,
     lineHeight: 30,
   },

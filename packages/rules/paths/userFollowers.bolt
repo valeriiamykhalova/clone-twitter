@@ -1,0 +1,4 @@
+path /userFollowers {
+  read() { isSignedIn() }
+  write() { isSignedIn() }
+}
