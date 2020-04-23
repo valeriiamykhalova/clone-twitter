@@ -26,7 +26,7 @@ function logOut() {
 function getUsersCount(users) {
   if (!users) return 0
 
-  const usersCount = Object.values(users).filter(val => val === true).length
+  const usersCount = Object.values(users).length
 
   return usersCount
 }

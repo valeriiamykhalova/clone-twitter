@@ -19,17 +19,12 @@ async function getAuthor(authorId) {
 }
 
 function follow(userId, followerId, status) {
-  firebase
-    .database()
-    .ref('userFollowers')
-    .child(followerId)
-    .set({ [userId]: status })
+  const relationUpdate = {}
 
-  firebase
-    .database()
-    .ref('userFollowing')
-    .child(userId)
-    .set({ [followerId]: status })
+  relationUpdate[`userFollowers/${followerId}/${userId}`] = status
+  relationUpdate[`userFollowing/${userId}/${followerId}`] = status
+
+  firebase.database().ref().update(relationUpdate)
 }
 
 async function getIsFollowing(userId, followerId) {
@@ -66,7 +61,7 @@ export default function ProfileModal(props) {
   }
 
   function onPressUnfollow() {
-    follow(user.id, authorId, false)
+    follow(user.id, authorId, null)
     setIsFollowing(false)
   }
 
