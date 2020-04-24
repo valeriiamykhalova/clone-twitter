@@ -13,7 +13,9 @@ import MainNavigator from './MainNavigator'
 import { UserProvider } from './user/UserProvider'
 import { ThemeProvider } from './theme/ThemeProvider'
 import * as firebase from 'firebase'
-import { AppLoading } from 'expo'
+import { AppLoading, Notifications } from 'expo'
+import * as Permissions from 'expo-permissions'
+import Constants from 'expo-constants'
 
 const CombinedDefaultTheme = {
   ...PaperDefaultTheme,
@@ -49,6 +51,39 @@ if (firebase.apps.length === 0) {
   firebase.initializeApp(firebaseConfig)
 }
 
+async function registerForPushNotificationsAsync() {
+  if (Constants.isDevice) {
+    const { status: existingStatus } = await Permissions.getAsync(
+      Permissions.NOTIFICATIONS
+    )
+    let finalStatus = existingStatus
+
+    if (existingStatus !== 'granted') {
+      const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS)
+
+      finalStatus = status
+    }
+
+    if (finalStatus !== 'granted') {
+      console.log('Failed to get push token for push notification!')
+
+      return
+    }
+
+    const token = await Notifications.getExpoPushTokenAsync()
+
+    return token
+  }
+}
+
+function setUserPushToken(userId, userPushToken) {
+  firebase
+    .database()
+    .ref('userOwned/pushToken')
+    .child(userId)
+    .set(userPushToken)
+}
+
 export default function Root() {
   const [isDarkTheme, setIsDarkTheme] = useState(false)
   const [user, setUser] = useState(undefined)
@@ -62,6 +97,10 @@ export default function Root() {
           const user = snap.val()
 
           setUser(user)
+
+          registerForPushNotificationsAsync().then(pushToken =>
+            setUserPushToken(user.id, pushToken)
+          )
         })
       } else {
         setUser(null)

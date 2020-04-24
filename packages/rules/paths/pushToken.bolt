@@ -1,0 +1,4 @@
+path /userOwned/pushToken {
+  read() { isSignedIn() }
+  write() { isSignedIn() }
+}
